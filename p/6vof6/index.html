@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>python项目：扇贝网小组查卡助手 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="扇贝网是一个非常棒的英语学习网站，大家还可以加入一些小组，一起交流学习、共同进步。但是，小组管理起来非常辛苦，尤其是在0点前踢出不打卡的成员，因此考虑利用程序来实现小组查卡自动化。 登录 操作扇贝网登录 URLhttp://www.shanbay.com/accounts/login/ 方式POST 数据csrfmiddlewaretokenCSRF令牌 username用户名 password密">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python项目：扇贝网小组查卡助手">
+<meta property="og:url" content="https://jlice.top/p/6vof6/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="扇贝网是一个非常棒的英语学习网站，大家还可以加入一些小组，一起交流学习、共同进步。但是，小组管理起来非常辛苦，尤其是在0点前踢出不打卡的成员，因此考虑利用程序来实现小组查卡自动化。 登录 操作扇贝网登录 URLhttp://www.shanbay.com/accounts/login/ 方式POST 数据csrfmiddlewaretokenCSRF令牌 username用户名 password密">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python项目：扇贝网小组查卡助手">
+<meta name="twitter:description" content="扇贝网是一个非常棒的英语学习网站，大家还可以加入一些小组，一起交流学习、共同进步。但是，小组管理起来非常辛苦，尤其是在0点前踢出不打卡的成员，因此考虑利用程序来实现小组查卡自动化。 登录 操作扇贝网登录 URLhttp://www.shanbay.com/accounts/login/ 方式POST 数据csrfmiddlewaretokenCSRF令牌 username用户名 password密">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-Python项目：扇贝网小组查卡助手Python项目：扇贝网小组查卡助手" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      Python项目：扇贝网小组查卡助手
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2016-03-26T10:42:00.000Z" itemprop="datePublished">2016-03-26</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2016/2016-03-26-Python项目：扇贝网小组查卡助手Python项目：扇贝网小组查卡助手.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>扇贝网是一个非常棒的英语学习网站，大家还可以加入一些小组，一起交流学习、共同进步。但是，小组管理起来非常辛苦，尤其是在0点前踢出不打卡的成员，因此考虑利用程序来实现小组查卡自动化。</p>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><table>
+<tr><td>操作</td><td colspan="2">扇贝网登录</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/accounts/login/</td></tr>
+<tr><td>方式</td><td colspan="2">POST</td></tr>
+<tr><td rowspan="3">数据</td><td>csrfmiddlewaretoken</td><td>CSRF令牌</td></tr>
+<tr><td>username</td><td>用户名</td></tr>
+<tr><td>password</td><td>密码</td></tr>
+</table>
+<a id="more"></a>
+<p>CSRF令牌存在于Cookie中，我们需要先以GET方式访问该URL，就能取到CSRF令牌了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shanbay</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, username, password)</span>:</span></span><br><span class="line">        self.request = requests.Session()</span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = password</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/accounts/login/'</span></span><br><span class="line">        r = self.request.get(url)</span><br><span class="line">        csrftoken = r.cookies[<span class="string">'csrftoken'</span>]</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'csrfmiddlewaretoken'</span>: csrftoken,</span><br><span class="line">            <span class="string">'username'</span>: self.username,</span><br><span class="line">            <span class="string">'password'</span>: self.password,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> self.request.post(url, data=data).ok</span><br></pre></td></tr></table></figure>
+<h2 id="成员管理"><a href="#成员管理" class="headerlink" title="成员管理"></a>成员管理</h2><p>如果我们获取小组管理后台所有组员的信息，比较费时间。考虑实际需求，不妨仅获取当天未打卡的组员的信息，这样能大大提高查卡效率。</p>
+<p>踢人需要data-id，这个在小组管理后台页面就能获取到。但是，如果我们想发站内短信，就需要username，而username在小组管理后台页面里是没有的，这个需要查看个人打卡日记。</p>
+<p>从个人打卡日记不仅能看到username，还能看到该贝友入组后最近已连续有多少天未打卡（这往往也是组规限定的内容）等等。</p>
+<table>
+<tr><td>操作</td><td colspan="2">踢人</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/api/v1/team/member/ </td></tr>
+<tr><td>方式</td><td colspan="2">PUT</td></tr>
+<tr><td rowspan="2">数据</td><td>action</td><td>动作（'dispel'）</td></tr>
+<tr><td>ids</td><td>data-id</td></tr>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> Journal <span class="keyword">import</span> Journal</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Domain</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, shanbay)</span>:</span></span><br><span class="line">        self.shanbay = shanbay</span><br><span class="line">        self.request = shanbay.request</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_not_checked_members</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        data_id          : 踢人时需要data_id</span></span><br><span class="line"><span class="string">        role             : 身份标识</span></span><br><span class="line"><span class="string">        nickname         : 昵称</span></span><br><span class="line"><span class="string">        user_id          : 发短信时需要user_id</span></span><br><span class="line"><span class="string">        username         : 用户名</span></span><br><span class="line"><span class="string">        points           : 贡献值</span></span><br><span class="line"><span class="string">        days             : 组龄</span></span><br><span class="line"><span class="string">        rate             : 打卡率</span></span><br><span class="line"><span class="string">        checked_yesterday: 昨天是否打卡</span></span><br><span class="line"><span class="string">        checked          : 今天是否打卡</span></span><br><span class="line"><span class="string">        off_dyas         : 入组后最近连续未打卡天数</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        members = []</span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">48</span>):</span><br><span class="line">            html = self.request.get(<span class="string">'http://www.shanbay.com/team/manage/?t=checkin_today&amp;page=%d'</span> % page).text</span><br><span class="line">            soup = BeautifulSoup(html, <span class="string">'html5lib'</span>)</span><br><span class="line">            <span class="keyword">for</span> member <span class="keyword">in</span> soup.find_all(<span class="string">'tr'</span>, class_=<span class="string">'member'</span>):</span><br><span class="line">                checked = member.find_all(class_=<span class="string">'checked'</span>)[<span class="number">1</span>].find(<span class="string">'span'</span>).text.strip() == <span class="string">'已打卡'</span></span><br><span class="line">                <span class="keyword">if</span> checked:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                days = int(member.find(class_=<span class="string">'days'</span>).text)</span><br><span class="line">                user_id = re.findall(<span class="string">'\d+'</span>, member.find(class_=<span class="string">'user'</span>).find(<span class="string">'a'</span>)[<span class="string">'href'</span>])[<span class="number">0</span>]</span><br><span class="line">                user = Journal(shanbay=self.shanbay, user_id=user_id)</span><br><span class="line">                checked_yesterday = member.find_all(class_=<span class="string">'checked'</span>)[<span class="number">0</span>].find(<span class="string">'span'</span>).text.strip() == <span class="string">'已打卡'</span></span><br><span class="line">                <span class="keyword">if</span> checked_yesterday:</span><br><span class="line">                    off_days = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    off_days = user.get_off_days(days)</span><br><span class="line">                data = &#123;</span><br><span class="line">                   <span class="string">'data_id'</span>:member[<span class="string">'data-id'</span>],</span><br><span class="line">                   <span class="string">'role'</span>:member[<span class="string">'role'</span>],</span><br><span class="line">                   <span class="string">'nickname'</span>:member.find(class_=<span class="string">'user'</span>).find(<span class="string">'a'</span>).text,</span><br><span class="line">                   <span class="string">'user_id'</span>:user_id,</span><br><span class="line">                   <span class="string">'username'</span>:user.get_username(),</span><br><span class="line">                   <span class="string">'points'</span>:int(member.find(class_=<span class="string">'points'</span>).text),</span><br><span class="line">                   <span class="string">'days'</span>:days,</span><br><span class="line">                   <span class="string">'rate'</span>:float(member.find(class_=<span class="string">'rate'</span>).find(<span class="string">'span'</span>).text[:<span class="number">-2</span>]),</span><br><span class="line">                   <span class="string">'checked_yesterday'</span>:checked_yesterday,</span><br><span class="line">                   <span class="string">'checked'</span>:checked,</span><br><span class="line">                   <span class="string">'off_dyas'</span>:off_days</span><br><span class="line">                   &#125;</span><br><span class="line">                members.append(data)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> members</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dismiss</span><span class="params">(self, data_ids)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/api/v1/team/member/'</span></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'action'</span>: <span class="string">'dispel'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        data[<span class="string">'ids'</span>] = <span class="string">','</span>.join(map(str, data_ids))</span><br><span class="line">        r = self.request.put(url, data=data)</span><br><span class="line">        <span class="keyword">return</span> r.json()[<span class="string">'msg'</span>] == <span class="string">"SUCCESS"</span></span><br></pre></td></tr></table></figure>
+<p>（这里用到了Python跳出两层循环的技巧<em>^_^</em>）</p>
+<h2 id="打卡日记"><a href="#打卡日记" class="headerlink" title="打卡日记"></a>打卡日记</h2><p>通过打卡日记，我们可以获得一些基本信息，例如：用户名、最近连续未打卡天数等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Journal</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, shanbay, user_id)</span>:</span></span><br><span class="line">        self.shanbay = shanbay</span><br><span class="line">        self.request = shanbay.request</span><br><span class="line">        self.user_id = user_id</span><br><span class="line">        self.soup = self.__get_journal_soup()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get_journal_soup</span><span class="params">(self)</span>:</span></span><br><span class="line">        html = self.request.get(<span class="string">'http://www.shanbay.com/checkin/user/%s/'</span> % self.user_id).text</span><br><span class="line">        <span class="keyword">return</span> BeautifulSoup(html)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_username</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> re.findall(<span class="string">u'(\w+)\s*的日记'</span>, self.soup.find_all(class_=<span class="string">'page-header'</span>)[<span class="number">0</span>].find(<span class="string">'h2'</span>).text)[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_off_days</span><span class="params">(self, days=<span class="number">0</span>)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="站内短信"><a href="#站内短信" class="headerlink" title="站内短信"></a>站内短信</h2><table>
+<tr><td>操作</td><td colspan="2">发送站内短信</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/api/v1/message/</td></tr>
+<tr><td>方式</td><td colspan="2">POST</td></tr>
+<tr><td rowspan="4">数据</td><td>recipient</td><td>收件人（username）</td></tr>
+<tr><td>subject</td><td>标题</td></tr>
+<tr><td>body</td><td>内容</td></tr>
+<tr><td>csrfmiddlewaretoken</td><td>CSRF令牌</td></tr>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, shanbay)</span>:</span></span><br><span class="line">        self.shanbay = shanbay</span><br><span class="line">        self.request = shanbay.request</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_msg</span><span class="params">(self,recipient, subject, body)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/api/v1/message/'</span></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'recipient'</span>: recipient,</span><br><span class="line">            <span class="string">'subject'</span>: subject,</span><br><span class="line">            <span class="string">'body'</span>: body,</span><br><span class="line">            <span class="string">'csrfmiddlewaretoken'</span>: self.request.cookies[<span class="string">'csrftoken'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> self.request.post(url, data=data).ok</span><br></pre></td></tr></table></figure>
+<h2 id="小组管理"><a href="#小组管理" class="headerlink" title="小组管理"></a>小组管理</h2><table>
+<tr><td>操作</td><td colspan="2">设定加组条件</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/team/setqualification/{team_id}</td></tr>
+<tr><td>方式</td><td colspan="2">POST</td></tr>
+<tr><td rowspan="5">数据</td><td>value</td><td>天数</td></tr>
+<tr><td>kind</td><td>类型</td></tr>
+<tr><td>condition</td><td>条件</td></tr>
+<tr><td>team</td><td>小组id</td></tr>
+<tr><td>csrfmiddlewaretoken</td><td>CSRF令牌</td></tr>
+</table>
+<p>若需要在小组发帖或回帖，需要forum_id而不是小组id，而forum_id可以通过小组主页找到。</p>
+<table>
+<tr><td>操作</td><td colspan="2">发帖</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/api/v1/forum/{forum_id}/thread/</td></tr>
+<tr><td>方式</td><td colspan="2">post</td></tr>
+<tr><td rowspan="3">数据</td><td>title</td><td>标题</td></tr>
+<tr><td>body</td><td>内容</td></tr>
+<tr><td>csrfmiddlewaretoken</td><td>CSRF令牌</td></tr>
+</table>
+<table>
+<tr><td>操作</td><td colspan="2">回帖</td></tr>
+<tr><td>URL</td><td colspan="2">http://www.shanbay.com/api/v1/forum/thread/{post_id}/post/</td></tr>
+<tr><td>方式</td><td colspan="2">POST</td></tr>
+<tr><td rowspan="2">数据</td><td>body</td><td>内容</td></tr>
+<tr><td>csrfmiddlewaretoken</td><td>CSRF令牌</td></tr>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Team</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, shanbay, team_id)</span>:</span></span><br><span class="line">        self.shanbay = shanbay</span><br><span class="line">        self.request = shanbay.request</span><br><span class="line">        self.team_id = team_id</span><br><span class="line">        self.forum_id = self.__get_forum_id()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_join_limit</span><span class="params">(self, days, kind=<span class="number">2</span>, condition=<span class="string">'&gt;='</span>)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/team/setqualification/%s'</span> % self.team_id</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'value'</span>: days,</span><br><span class="line">            <span class="string">'kind'</span>: kind,</span><br><span class="line">            <span class="string">'condition'</span>: condition,</span><br><span class="line">            <span class="string">'team'</span>: self.team_id,</span><br><span class="line">            <span class="string">'csrfmiddlewaretoken'</span>: self.request.cookies[<span class="string">'csrftoken'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        r = self.request.post(url, data=data)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'http://www.shanbay.com/referral/invite/?kind=team'</span> == r.url</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get_forum_id</span><span class="params">(self)</span>:</span></span><br><span class="line">        html = self.request.get(<span class="string">'http://www.shanbay.com/team/detail/%s/'</span> % str(self.teamId)).text</span><br><span class="line">        soup = BeautifulSoup(html)</span><br><span class="line">        <span class="keyword">return</span> soup.find(id=<span class="string">'forum_id'</span>)[<span class="string">'value'</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">new_post</span><span class="params">(self, title, content)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/api/v1/forum/%s/thread/'</span> % self.forum_id</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'title'</span>: title,</span><br><span class="line">            <span class="string">'body'</span>: content,</span><br><span class="line">            <span class="string">'csrfmiddlewaretoken'</span>: self.request.cookies[<span class="string">'csrftoken'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> self.request.post(url, data=data).json()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reply_post</span><span class="params">(self, post_id, content)</span>:</span></span><br><span class="line">        url = <span class="string">'http://www.shanbay.com/api/v1/forum/thread/%s/post/'</span> % post_id</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'body'</span>: content,</span><br><span class="line">            <span class="string">'csrfmiddlewaretoken'</span>: self.request.cookies.get(<span class="string">'csrftoken'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> self.request.post(url, data=data).json()</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/6vof6/" target="_blank" rel="noopener" title="Python项目：扇贝网小组查卡助手">https://jlice.top/p/6vof6/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Python/">Python</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7czq8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          【实验楼】HBASE教程——学习笔记
+      </div>
+    </a>
+    <a href="../6v913/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Ubuntu搭建Ruby on Rails环境</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录"><span class="nav-number">1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员管理"><span class="nav-number">2.</span> <span class="nav-text">成员管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打卡日记"><span class="nav-number">3.</span> <span class="nav-text">打卡日记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#站内短信"><span class="nav-number">4.</span> <span class="nav-text">站内短信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小组管理"><span class="nav-number">5.</span> <span class="nav-text">小组管理</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2016-03-26T18:42:00+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

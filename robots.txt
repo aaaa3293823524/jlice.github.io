@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /p/
+Allow: /tags/
+Allow: /page/
+Allow: .css
+Disallow: /images/
+Disallow: /fancybox/
+Disallow: /js/
+Disallow: /lib/
+Disallow: /preview/
+
+Sitemap: https://jlice.top/sitemap.xml

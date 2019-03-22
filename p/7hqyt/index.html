@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>tensorflow之mnist入门 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="MNIST手写数字识别是机器学习中非常经典的问题，相当于编程语言界的“Hello World“。关于神经网络解决MNIST手写数字识别问题，可以参考这个视频：深度学习之神经网络的结构 Part 1 ver 2.0 视频中使用的是多层神经网络，为了简化问题，这里我们使用单层的网络结构。 参考之前的MNIST数据集解析，先对MNIST数据集进行解析：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow之MNIST入门">
+<meta property="og:url" content="https://jlice.top/p/7hqyt/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="MNIST手写数字识别是机器学习中非常经典的问题，相当于编程语言界的“Hello World“。关于神经网络解决MNIST手写数字识别问题，可以参考这个视频：深度学习之神经网络的结构 Part 1 ver 2.0 视频中使用的是多层神经网络，为了简化问题，这里我们使用单层的网络结构。 参考之前的MNIST数据集解析，先对MNIST数据集进行解析：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45176354002211e99619509a4c21c90b.gif">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow之MNIST入门">
+<meta name="twitter:description" content="MNIST手写数字识别是机器学习中非常经典的问题，相当于编程语言界的“Hello World“。关于神经网络解决MNIST手写数字识别问题，可以参考这个视频：深度学习之神经网络的结构 Part 1 ver 2.0 视频中使用的是多层神经网络，为了简化问题，这里我们使用单层的网络结构。 参考之前的MNIST数据集解析，先对MNIST数据集进行解析：">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45176354002211e99619509a4c21c90b.gif">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-TensorFlow之MNIST入门" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      TensorFlow之MNIST入门
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-03-11T12:53:41.000Z" itemprop="datePublished">2018-03-11</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-03-11-TensorFlow之MNIST入门.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>MNIST手写数字识别是机器学习中非常经典的问题，相当于编程语言界的“Hello World“。关于神经网络解决MNIST手写数字识别问题，可以参考这个视频：<a href="https://www.bilibili.com/video/av15532370/" target="_blank" rel="noopener">深度学习之神经网络的结构 Part 1 ver 2.0</a></p>
+<p>视频中使用的是多层神经网络，为了简化问题，这里我们使用单层的网络结构。</p>
+<p>参考之前的<a href="/p/7hnmu/" title="MNIST数据集解析">MNIST数据集解析</a>，先对MNIST数据集进行解析：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gzip</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_images</span><span class="params">(image_gz)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> gzip.open(image_gz) <span class="keyword">as</span> f:</span><br><span class="line">        buf = f.read()</span><br><span class="line">    num = int(struct.unpack_from(<span class="string">'&gt;i'</span>, buf, <span class="number">4</span>)[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> (np.array(struct.unpack_from(<span class="string">'B'</span>*num*<span class="number">28</span>*<span class="number">28</span>, buf, <span class="number">16</span>)</span><br><span class="line">                     ).reshape(num, <span class="number">784</span>)/<span class="number">255</span>).astype(np.float32)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_labels</span><span class="params">(label_gz)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> gzip.open(label_gz) <span class="keyword">as</span> f:</span><br><span class="line">        buf = f.read()</span><br><span class="line">    num = int(struct.unpack_from(<span class="string">'&gt;i'</span>, buf, <span class="number">4</span>)[<span class="number">0</span>])</span><br><span class="line">    idx = <span class="number">8</span></span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">        label = int(struct.unpack_from(<span class="string">'B'</span>, buf, idx)[<span class="number">0</span>])</span><br><span class="line">        idx += <span class="number">1</span></span><br><span class="line">        <span class="comment"># one-hot encoding</span></span><br><span class="line">        ohl = np.zeros(<span class="number">10</span>, dtype=np.float32)</span><br><span class="line">        ohl[label] = <span class="number">1.0</span></span><br><span class="line">        tmp.append(ohl)</span><br><span class="line">    <span class="keyword">return</span> np.array(tmp)</span><br><span class="line"></span><br><span class="line">train_images = load_images(<span class="string">'train-images-idx3-ubyte.gz'</span>)</span><br><span class="line">train_labels = load_labels(<span class="string">'train-labels-idx1-ubyte.gz'</span>)</span><br><span class="line">test_images = load_images(<span class="string">'t10k-images-idx3-ubyte.gz'</span>)</span><br><span class="line">test_labels = load_labels(<span class="string">'t10k-labels-idx1-ubyte.gz'</span>)</span><br></pre></td></tr></table></figure>
+<p>在读取图片时，一次性读取二进制数据，这样可以大大提升效率。之后，为了使用的方便，将它变形为num*784大小，由于图片都是28*28大小，所以单张图片的像素数就是784。另外，还将像素值进行了归一化，因为，如果输入层的值很大，在反向传播时传递到输入层的梯度就会很大，如果梯度非常大，学习率就必须非常小，否则就会跳过局部最小（直接表现就是代价函数的值为nan）。因此，<strong>如果用梯度下降来训练模型一般都要在数据预处理步骤进行数据归一化</strong>。</p>
+<p>对于离散的特征一般按照one-hot编码，该离散特征有多少取值，就用多少维度来表示该特征。在回归、分类、聚类等机器学习算法中，特征之间距离的计算或相似度的计算是非常重要的，使用one-hot编码，特征之间的距离更为合理。</p>
+<p><strong>基于树的方法不需要特征归一化，基于参数或距离的模型要进行特征归一化</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">X = tf.placeholder(tf.float32, (<span class="literal">None</span>, <span class="number">784</span>))</span><br><span class="line">Y = tf.placeholder(tf.float32, (<span class="literal">None</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">W = tf.Variable(tf.truncated_normal((<span class="number">784</span>, <span class="number">10</span>), stddev=<span class="number">0.01</span>))</span><br><span class="line">b = tf.Variable(tf.zeros((<span class="number">10</span>,)))</span><br><span class="line">y = tf.nn.softmax(tf.matmul(X, W) + b)</span><br><span class="line"></span><br><span class="line">cost = -tf.reduce_sum(Y*tf.log(tf.clip_by_value(y, <span class="number">1e-10</span>, <span class="number">1.0</span>)))</span><br></pre></td></tr></table></figure>
+<p>Softmax函数一般用于多分类问题，可以对预测的标签进行归一化。计算公式为：</p>
+<script type="math/tex; mode=display">S_i = \frac {e^{x_i}} {\sum e^{x}}</script><p>下面举例说明计算过程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant(np.array([</span><br><span class="line">    [<span class="number">6.</span>, <span class="number">1.</span>, <span class="number">0.</span>],</span><br><span class="line">    [<span class="number">0.</span>, <span class="number">4.</span>, <span class="number">2.</span>]</span><br><span class="line">]))</span><br><span class="line">b = tf.nn.softmax(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(b))</span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line">[[ <span class="number">0.99086747</span>  <span class="number">0.00667641</span>  <span class="number">0.00245611</span>]</span><br><span class="line"> [ <span class="number">0.01587624</span>  <span class="number">0.86681333</span>  <span class="number">0.11731043</span>]]</span><br></pre></td></tr></table></figure>
+<p>使用Linux自带的计算器bc进行手动计算的过程（其中<code>e(x)</code>表示<code>exp(x)</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ bc -lq</span><br><span class="line">e(6)/(e(6)+e(1)+e(0))</span><br><span class="line">.99086747258217259526</span><br><span class="line">e(1)/(e(6)+e(1)+e(0))</span><br><span class="line">.00667641251337645118</span><br><span class="line">e(0)/(e(6)+e(1)+e(0))</span><br><span class="line">.00245611490445095354</span><br><span class="line">e(0)/(e(0)+e(4)+e(2))</span><br><span class="line">.01587623997646676632</span><br><span class="line">e(4)/(e(0)+e(4)+e(2))</span><br><span class="line">.86681333219733487114</span><br><span class="line">e(2)/(e(0)+e(4)+e(2))</span><br><span class="line">.11731042782619836253</span><br></pre></td></tr></table></figure>
+<p>使用的代价函数为：</p>
+<script type="math/tex; mode=display">C = -\sum [Y\log(y)]</script><p>由于y可能有元素值为0，造成log(y)无意义，从而使得代价函数的值为nan，所以这里使用<code>tf.clip_by_value</code>对其值进行修剪，设定值的下限和上限。</p>
+<p>为了说明cost的计算，列举一些例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant(np.array([</span><br><span class="line">    [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">    [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>]</span><br><span class="line">]))</span><br><span class="line">b = tf.constant(np.array([</span><br><span class="line">    [<span class="number">0.8</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">    [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.9</span>, <span class="number">0.</span>, <span class="number">0.1</span>]</span><br><span class="line">]))</span><br><span class="line">c = -tf.reduce_sum(a*tf.log(tf.clip_by_value(b, <span class="number">1e-10</span>, <span class="number">1.</span>)))</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(c))</span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line"><span class="number">0.328504066972</span></span><br></pre></td></tr></table></figure>
+<p>这个的计算式子是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-1*(</span><br><span class="line">    1.0*log(0.8)+0.0*log(0.1)+0.0*log(0.1)+0.0*log(0.0)+0.0*log(0.0) +</span><br><span class="line">    0.0*log(0.0)+0.0*log(0.0)+1.0*log(0.9)+0.0*log(0.0)+0.0*log(0.1)</span><br><span class="line">)</span><br><span class="line">=-1*(log(0.8+log(0.9)))</span><br></pre></td></tr></table></figure>
+<p>reduce_sum也能在某个axis上进行计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant(np.array([</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">]))</span><br><span class="line">print(a.shape)</span><br><span class="line">b = tf.reduce_sum(a)</span><br><span class="line">c = tf.reduce_sum(a, axis=<span class="number">0</span>)</span><br><span class="line">d = tf.reduce_sum(a, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(b))</span><br><span class="line">    print(sess.run(c))</span><br><span class="line">    print(sess.run(d))</span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">21</span></span><br><span class="line">[<span class="number">5</span> <span class="number">7</span> <span class="number">9</span>]</span><br><span class="line">[ <span class="number">6</span> <span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<p>默认情况下，reduce_sum会对所有axis进行计算，得到的结果是一个标量。在上面的例子里，由于a的shape是(2, 3)， 所以，当对axis=0进行计算时，结果的shape为(3,)，当对axis=1进行计算时，结果的shape为(2,)。对某个axis进行计算时，结果的shape就是把源的shape的axis为索引所在位置的值去掉，剩余的结果就是结果的shape。</p>
+<p>接下来就是训练过程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">train = tf.train.GradientDescentOptimizer(<span class="number">0.01</span>).minimize(cost)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">        batch = np.random.choice(np.arange(<span class="number">60000</span>), <span class="number">100</span>)</span><br><span class="line">        tx, ty = train_images[batch], train_labels[batch]</span><br><span class="line">        sess.run(train, feed_dict=&#123;X: tx, Y: ty&#125;)</span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">1</span>) % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">"Epoch:"</span>, i + <span class="number">1</span>, <span class="string">"Cost:"</span>, sess.run(cost, feed_dict=&#123;</span><br><span class="line">                X: train_images, Y: train_labels&#125;))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># test model</span></span><br><span class="line">    correct = tf.equal(tf.argmax(Y, <span class="number">1</span>), tf.argmax(y, <span class="number">1</span>))</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br><span class="line">    print(<span class="string">"Accuracy:"</span>, sess.run(accuracy, feed_dict=&#123;X: test_images, Y: test_labels&#125;))</span><br></pre></td></tr></table></figure>
+<p>为了加快训练速度，每轮迭代时并不使用所有数据集进行训练，而是每次随机选取一部分数据集进行训练（随机梯度下降）。</p>
+<p><code>tf.argmax</code>可以获取指定维度的最大值所在的索引；<code>tf.cast</code>可以转换dtype。</p>
+<p>经过以上的训练过程，最终得到的准确率大概是91%，效果还行，大部分的预计是正确的，也会偶尔出现错误：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45176354002211e99619509a4c21c90b.gif" alt></p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7hqyt/" target="_blank" rel="noopener" title="TensorFlow之MNIST入门">https://jlice.top/p/7hqyt/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7jai9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          Python进行doctest
+      </div>
+    </a>
+    <a href="../7hpz5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">awk命令学习笔记</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav">无</ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-03-11T20:53:41+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

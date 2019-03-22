@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>awk命令学习笔记 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="执行流程awk命令基本结构： 1awk &apos;BEGIN&amp;#123; commands &amp;#125; pattern &amp;#123; commands &amp;#125; END&amp;#123; commands &amp;#125;&apos; file 【选项】 -F：输入域分隔符 -v：自定义变量 -f：调用awk脚本 【执行流程】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="awk命令学习笔记">
+<meta property="og:url" content="https://jlice.top/p/7hpz5/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="执行流程awk命令基本结构： 1awk &apos;BEGIN&amp;#123; commands &amp;#125; pattern &amp;#123; commands &amp;#125; END&amp;#123; commands &amp;#125;&apos; file 【选项】 -F：输入域分隔符 -v：自定义变量 -f：调用awk脚本 【执行流程】">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="awk命令学习笔记">
+<meta name="twitter:description" content="执行流程awk命令基本结构： 1awk &apos;BEGIN&amp;#123; commands &amp;#125; pattern &amp;#123; commands &amp;#125; END&amp;#123; commands &amp;#125;&apos; file 【选项】 -F：输入域分隔符 -v：自定义变量 -f：调用awk脚本 【执行流程】">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-awk命令学习笔记" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      awk命令学习笔记
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-03-10T15:29:11.000Z" itemprop="datePublished">2018-03-10</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-03-10-awk命令学习笔记.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>awk命令基本结构：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 'BEGIN&#123; commands &#125; pattern &#123; commands &#125; END&#123; commands &#125;' file</span><br></pre></td></tr></table></figure>
+<p>【选项】</p>
+<p><code>-F</code>：输入域分隔符</p>
+<p><code>-v</code>：自定义变量</p>
+<p><code>-f</code>：调用awk脚本</p>
+<p>【执行流程】</p>
+<a id="more"></a>
+<p>(1) 执行BEGIN{ commands }；</p>
+<p>(2) 从文件或stdin中读取一行，执行pattern { commands }。重复这个过程直至读取完毕；</p>
+<p>(3) 执行END{ commands }</p>
+<h2 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h2><p><code>NR</code>：记录数量，也就是已读的行号</p>
+<p><code>NF</code>：字段数量</p>
+<p><code>$0</code>：当前行文本</p>
+<p><code>$1</code>：第一个字段的文本</p>
+<p><code>FS</code>：输入域分隔符</p>
+<p><code>OFS</code>：输出域分隔符</p>
+<h2 id="pattern"><a href="#pattern" class="headerlink" title="pattern"></a>pattern</h2><p><code>/pattern/</code>：仅处理匹配的行；<code>!/pattern/</code>：仅处理不匹配的行</p>
+<p>pattern部分也可以是条件。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk -F : <span class="string">'NR&lt;3'</span> /etc/passwd</span></span><br><span class="line">root:x:0:0:root:/root:/usr/bin/zsh</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>awk的数组使用方式有点特别。awk数组是关联数组，引用不存在的索引时会自动使用默认值。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> | awk <span class="string">'&#123;arr[0]++;print arr[0], arr[1], arr[2]==0&#125;'</span></span></span><br><span class="line">1  1</span><br></pre></td></tr></table></figure>
+<h2 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h2><p><code>printf(...)</code>：格式化输出；</p>
+<p><code>length(s)</code>：字符串长度;</p>
+<p><code>gsub(r, s, [t])</code>：在t字符串搜索r匹配的内容并全部替换为s</p>
+<p><code>getline</code>：读取一行（文件游标也会移动一行）</p>
+<h2 id="其它语法"><a href="#其它语法" class="headerlink" title="其它语法"></a>其它语法</h2><p>awk支持if语句、switch语句、while循环、for循环、for in 循环。</p>
+<p>awk支持算数、赋值、比较、逻辑和模式匹配运算符。</p>
+<p><code>~</code>：匹配；<code>!~</code>：不匹配</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7hpz5/" target="_blank" rel="noopener" title="awk命令学习笔记">https://jlice.top/p/7hpz5/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7hqyt/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          TensorFlow之MNIST入门
+      </div>
+    </a>
+    <a href="../7hnmu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">MNIST数据集解析</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行流程"><span class="nav-number">1.</span> <span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊变量"><span class="nav-number">2.</span> <span class="nav-text">特殊变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pattern"><span class="nav-number">3.</span> <span class="nav-text">pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">4.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置函数"><span class="nav-number">5.</span> <span class="nav-text">内置函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它语法"><span class="nav-number">6.</span> <span class="nav-text">其它语法</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-03-10T23:29:11+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

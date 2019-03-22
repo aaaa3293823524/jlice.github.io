@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>记因内核版本错误导致u盘不能识别的问题解决 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="U盘插上电脑，发现没有自动挂载。然后运行 1$ sudo fdisk -l 一看，发现并没有U盘所对应的设备，也就是U盘不能识别了！以前从没在Linux上遇到这种问题，通过查资料得知，要识别U盘，需要装载usb-storage模块。 于是，运行 1$ lsmod | grep usb 发现确实没有usb-storage模块。 为了判断U盘是否物理损坏导致系统无法“感知”U盘的存在，运行命令 1$">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记因内核版本错误导致U盘不能识别的问题解决">
+<meta property="og:url" content="https://jlice.top/p/7l9mo/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="U盘插上电脑，发现没有自动挂载。然后运行 1$ sudo fdisk -l 一看，发现并没有U盘所对应的设备，也就是U盘不能识别了！以前从没在Linux上遇到这种问题，通过查资料得知，要识别U盘，需要装载usb-storage模块。 于是，运行 1$ lsmod | grep usb 发现确实没有usb-storage模块。 为了判断U盘是否物理损坏导致系统无法“感知”U盘的存在，运行命令 1$">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45d2c47e002211e99e66509a4c21c90b.jpg">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记因内核版本错误导致U盘不能识别的问题解决">
+<meta name="twitter:description" content="U盘插上电脑，发现没有自动挂载。然后运行 1$ sudo fdisk -l 一看，发现并没有U盘所对应的设备，也就是U盘不能识别了！以前从没在Linux上遇到这种问题，通过查资料得知，要识别U盘，需要装载usb-storage模块。 于是，运行 1$ lsmod | grep usb 发现确实没有usb-storage模块。 为了判断U盘是否物理损坏导致系统无法“感知”U盘的存在，运行命令 1$">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45d2c47e002211e99e66509a4c21c90b.jpg">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-记因内核版本错误导致U盘不能识别的问题解决" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      记因内核版本错误导致U盘不能识别的问题解决
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-07-03T12:48:29.000Z" itemprop="datePublished">2018-07-03</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-07-03-记因内核版本错误导致U盘不能识别的问题解决.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>U盘插上电脑，发现没有自动挂载。然后运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo fdisk -l</span><br></pre></td></tr></table></figure>
+<p>一看，发现并没有U盘所对应的设备，也就是U盘不能识别了！以前从没在Linux上遇到这种问题，通过查资料得知，要识别U盘，需要装载usb-storage模块。</p>
+<p>于是，运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod | grep usb</span><br></pre></td></tr></table></figure>
+<p>发现确实没有usb-storage模块。</p>
+<p>为了判断U盘是否物理损坏导致系统无法“感知”U盘的存在，运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo udevadm monitor --udev</span><br></pre></td></tr></table></figure>
+<p>发现U盘插拔时有反应。</p>
+<a id="more"></a>
+<p>然后运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo modprobe usb-storage</span><br><span class="line">modprobe: FATAL: Module usb-storage not found in directory /lib/modules/4.14.48-2-MANJARO</span><br></pre></td></tr></table></figure>
+<p>尝试装载usb-storage模块，结果报错。</p>
+<p>查看/lib/modules/目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls /lib/modules </span><br><span class="line">4.14.40-rt30-MANJARO  extramodules-4.14-MANJARO</span><br><span class="line">4.14.52-1-MANJARO     extramodules-4.14-rt-MANJARO</span><br></pre></td></tr></table></figure>
+<p>发现并没有4.14.48-2-MANJARO。在Manjaro设置管理器里查看内核：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45d2c47e002211e99e66509a4c21c90b.jpg" alt></p>
+<p>发现当前内核版本为4.14.52-1。但是，运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -r</span><br></pre></td></tr></table></figure>
+<p>却显示内核版本为4.14.48-2-MANJARO。这也难怪modprobe会到/lib/modules/4.14.48-2-MANJARO目录下去找usb-storage模块。</p>
+<p>通过查询modprobe的manpage，发现可以指定版本。运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo modprobe --<span class="built_in">set</span>-version=4.14.52-1-MANJARO usb-storage</span><br></pre></td></tr></table></figure>
+<p>U盘终于自动挂载了！</p>
+<p>为了启动时使用4.14.52-1版本的内核，运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo update-grub</span><br></pre></td></tr></table></figure>
+<p>来更新grub，重启后再运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -r</span><br></pre></td></tr></table></figure>
+<p>显示内核版本为4.14.52-1-MANJARO，U盘也能自动挂载，运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod | grep usb</span><br></pre></td></tr></table></figure>
+<p>也有usb-storage模块，问题解决。</p>
+<p>【后记】更新内核后最好重启下</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7l9mo/" target="_blank" rel="noopener" title="记因内核版本错误导致U盘不能识别的问题解决">https://jlice.top/p/7l9mo/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Linux/">Linux</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7o05h/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          Python中list的remove方法的坑
+      </div>
+    </a>
+    <a href="../7l2u9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PPM、PGM、PBM图像格式剖析</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav">无</ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-07-03T20:48:29+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

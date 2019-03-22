@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>重写了图床神器，支持七牛云和腾讯云 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="前言用Python重写了图床神器，支持七牛云和腾讯云。用Python写起来感觉顺滑多了～贴一下效果：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重写了图床神器，支持七牛云和腾讯云">
+<meta property="og:url" content="https://jlice.top/p/7k90b/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="前言用Python重写了图床神器，支持七牛云和腾讯云。用Python写起来感觉顺滑多了～贴一下效果：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/jlice/lpic/master/assets/lpic.gif">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重写了图床神器，支持七牛云和腾讯云">
+<meta name="twitter:description" content="前言用Python重写了图床神器，支持七牛云和腾讯云。用Python写起来感觉顺滑多了～贴一下效果：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jlice/lpic/master/assets/lpic.gif">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-重写了图床神器，支持七牛云和腾讯云" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      重写了图床神器，支持七牛云和腾讯云
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-05-31T13:47:43.000Z" itemprop="datePublished">2018-05-31</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-05-31-重写了图床神器，支持七牛云和腾讯云.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用Python重写了图床神器，支持七牛云和腾讯云。用Python写起来感觉顺滑多了～贴一下效果：</p>
+<p><img src="https://raw.githubusercontent.com/jlice/lpic/master/assets/lpic.gif" alt="lpic"></p>
+<a id="more"></a>
+<p>项目地址：<a href="https://github.com/jlice/lpic" target="_blank" rel="noopener">lpic: 终端图床神器</a></p>
+<p>为什么要想着重写图床神器呢？</p>
+<p>因为，突然发现七牛云的外链不是HTTPS的，然后谷歌浏览器地址栏就没有小绿锁了，标记网站为不安全。而腾讯云的外链是HTTPS的，而且，腾讯云免费额度更多（虽然七牛云10G也足够）。想了想，还是搬到腾讯云吧。貌似谷歌会在以后版本的谷歌浏览器将HTTP用红色警告标记为不安全，所以还是早早上HTTPS比较好。</p>
+<p>用Python重写其实难度不大，就调用调用官方SDK就行了。不过，在此过程中还是有些收获的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="压缩图片"><a href="#压缩图片" class="headerlink" title="压缩图片"></a>压缩图片</h3><p>既然是用Python重写，通过调用命令行的方式用<code>convert</code>命令压缩图片就显得不够优雅了。可以用<code>Pillow</code>来处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> Image.open(file) <span class="keyword">as</span> im:</span><br><span class="line">    im.save(new_file, format=<span class="string">'JPEG'</span>, optimize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>optimize=True 表示自动优化，使用JPEG压缩效果很不错。</p>
+<h3 id="读取YAML"><a href="#读取YAML" class="headerlink" title="读取YAML"></a>读取YAML</h3><p>yaml格式作为配置文件貌似挺火的，好像有不少软件的配置文件用的yaml。不过，我觉得yaml有点坑的地方在于，<code>:</code>后面要有空格，否则会解析失败。</p>
+<p>Python可以用现成的<code>PyYAML</code>来读取YAML：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(yml_file) <span class="keyword">as</span> fp:</span><br><span class="line">    conf = yaml.load(fp)</span><br></pre></td></tr></table></figure>
+<p>会解析为dict。</p>
+<p>这里说一个小插曲，我习惯使用dict的<code>.get(key, default)</code>方法来设置默认值，不过在读取yaml后我用这种方式设置默认值发现没效果。后来才发现是我思维定势了，如果key存在，即使对应的值是None，也不能用这种方式设置默认值，因为key存在，而这个方法是给不存在的key设置默认值的。</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7k90b/" target="_blank" rel="noopener" title="重写了图床神器，支持七牛云和腾讯云">https://jlice.top/p/7k90b/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7k91v/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          解决Dia在Linux上的输入法问题
+      </div>
+    </a>
+    <a href="../7k6v8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">撸了个七牛云图床神器</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩图片"><span class="nav-number">2.1.</span> <span class="nav-text">压缩图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取YAML"><span class="nav-number">2.2.</span> <span class="nav-text">读取YAML</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-05-31T21:47:43+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

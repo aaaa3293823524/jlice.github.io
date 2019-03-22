@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>解决dia在linux上的输入法问题 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="Dia是一个比较小巧的画图软件，支持Windows、Mac和Linux，功能类似于Visio。个人觉得Dia还挺好用的，不过，有个比较烦的地方就是用不了中文输入法。在Linux上，输入法比较折腾。 按网上的说法改/usr/bin/dia不行，用dia-normal提示没这个命令。不过，我自己发现了解决方案。 探索历程运行dia --help，可以看到有个--classic选项。尝试使用这个选项运行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决Dia在Linux上的输入法问题">
+<meta property="og:url" content="https://jlice.top/p/7k91v/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="Dia是一个比较小巧的画图软件，支持Windows、Mac和Linux，功能类似于Visio。个人觉得Dia还挺好用的，不过，有个比较烦的地方就是用不了中文输入法。在Linux上，输入法比较折腾。 按网上的说法改/usr/bin/dia不行，用dia-normal提示没这个命令。不过，我自己发现了解决方案。 探索历程运行dia --help，可以看到有个--classic选项。尝试使用这个选项运行">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决Dia在Linux上的输入法问题">
+<meta name="twitter:description" content="Dia是一个比较小巧的画图软件，支持Windows、Mac和Linux，功能类似于Visio。个人觉得Dia还挺好用的，不过，有个比较烦的地方就是用不了中文输入法。在Linux上，输入法比较折腾。 按网上的说法改/usr/bin/dia不行，用dia-normal提示没这个命令。不过，我自己发现了解决方案。 探索历程运行dia --help，可以看到有个--classic选项。尝试使用这个选项运行">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-解决Dia在Linux上的输入法问题" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      解决Dia在Linux上的输入法问题
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-05-31T14:43:50.000Z" itemprop="datePublished">2018-05-31</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-05-31-解决Dia在Linux上的输入法问题.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>Dia是一个比较小巧的画图软件，支持Windows、Mac和Linux，功能类似于Visio。个人觉得Dia还挺好用的，不过，有个比较烦的地方就是用不了中文输入法。在Linux上，输入法比较折腾。</p>
+<p>按网上的说法改<code>/usr/bin/dia</code>不行，用<code>dia-normal</code>提示没这个命令。不过，我自己发现了解决方案。</p>
+<h2 id="探索历程"><a href="#探索历程" class="headerlink" title="探索历程"></a>探索历程</h2><p>运行<code>dia --help</code>，可以看到有个<code>--classic</code>选项。尝试使用这个选项运行，Dia就能输入中文了，只是工具箱面板分离了。</p>
+<p>虽然这样算是解决了输入法问题，但是，窗口太小了，还不能记住窗口大小，所以每次都要拖一下窗口大小，用起来挺不方便、不够优雅。</p>
+<a id="more"></a>
+<p>在Windows平台上，Dia也是默认用不了中文输入法，但是菜单栏有个输入法菜单，选择输入法为”简单“即可。在Ubuntu上好像菜单栏也有输入法菜单，但是Deepin（也就是我在用的Linux发行版）上，Dia菜单栏上没有输入法菜单。</p>
+<p>今天偶然发现，打开Dia后，在要输入文字时，右键就有输入法的菜单，选择”X输入法“就能用中文输入法了，而且也不会面板分离。</p>
+<p>可是，每次要输入中文时都右键选择一下还是不够优雅。有彻底终结Dia输入法问题的方案吗？</p>
+<p>既然Dia能选择输入法，那么其环境变量应该有输入法相关的。于是，运行<code>dia &amp;</code>会后台启动Dia，并且显示其PID，然后<code>cat /proc/&lt;PID&gt;/environ</code>就能显示其环境变量了。Dia是GTK应用程序，”X输入法“英文是”X input method”，简写”xim”，在<code>im-config</code>里也有”xim”。而在Dia的环境变量里有<code>GTK_IM_MODULE=fcitx</code>（我用的是搜狗输入法），Dia应该是通过这个环境变量来选择输入法的。尝试运行<code>GTK_IM_MODULE=xim dia</code>发现就能用中文输入法了！</p>
+<h2 id="终极方案"><a href="#终极方案" class="headerlink" title="终极方案"></a>终极方案</h2><p>所以，解决方案就是设置Dia的环境变量，使得<code>GTK_IM_MODULE=xim</code>就行了。具体来说，修改<code>/usr/share/applications/dia.desktop</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec=env GTK_IM_MODULE=xim dia %F</span><br></pre></td></tr></table></figure>
+<p>至于从终端启动Dia，可以写条alias：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> dia=<span class="string">"env GTK_IM_MODULE=xim dia"</span></span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7k91v/" target="_blank" rel="noopener" title="解决Dia在Linux上的输入法问题">https://jlice.top/p/7k91v/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7ka8s/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          线性最小二乘法推导
+      </div>
+    </a>
+    <a href="../7k90b/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">重写了图床神器，支持七牛云和腾讯云</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#探索历程"><span class="nav-number">1.</span> <span class="nav-text">探索历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终极方案"><span class="nav-number">2.</span> <span class="nav-text">终极方案</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-05-31T22:43:50+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

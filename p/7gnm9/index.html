@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>gimp练习：disintegration effect - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="在Youtube上看到了一个Gimp教程：GIMP Tutorial: Disintegration Effect，就来练习一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gimp练习：Disintegration Effect">
+<meta property="og:url" content="https://jlice.top/p/7gnm9/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="在Youtube上看到了一个Gimp教程：GIMP Tutorial: Disintegration Effect，就来练习一下。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43205122002211e9b881509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/434b288c002211e988e3509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/437387a6002211e999a1509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/439ccb0a002211e9952e509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43c692a8002211e988d4509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43f7a624002211e99f02509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/441b60a4002211e992e7509a4c21c90b.jpg">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/4445e902002211e99326509a4c21c90b.jpg">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gimp练习：Disintegration Effect">
+<meta name="twitter:description" content="在Youtube上看到了一个Gimp教程：GIMP Tutorial: Disintegration Effect，就来练习一下。">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43205122002211e9b881509a4c21c90b.jpg">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-gimp练习：Disintegration-Effect" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      gimp练习：Disintegration Effect
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-02-04T02:57:01.000Z" itemprop="datePublished">2018-02-04</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-02-04-gimp练习：Disintegration-Effect.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>在Youtube上看到了一个Gimp教程：<a href="https://www.youtube.com/watch?v=kUt2cditN1g" target="_blank" rel="noopener">GIMP Tutorial: Disintegration Effect</a>，就来练习一下。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43205122002211e9b881509a4c21c90b.jpg" alt></p>
+<a id="more"></a>
+<p>打开模特的照片，如果我们系统的Gtk主题是亮色的，画布衬垫可能是白色的，这样就和模特照片的白色混在一起了。因此，建议在 首选项&gt;图像窗口&gt;外观 修改画布衬垫模式。</p>
+<p>首先，模特照片的颜色有点灰，因此可以调整下色阶：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/434b288c002211e988e3509a4c21c90b.jpg" alt></p>
+<p>然后，复制图层，对下面的图层应用 滤镜&gt;扭曲&gt;交互式翘曲(IWarp)：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/437387a6002211e999a1509a4c21c90b.jpg" alt></p>
+<p>对于复制的图层，以模特的背景色（白色）为前景色，选择碎片状的笔刷，以合适的大小，画出边缘碎裂的效果（如图）：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/439ccb0a002211e9952e509a4c21c90b.jpg" alt></p>
+<p>然后添加白色的蒙板，用以黑色为前景色，补上更远处的碎片。其实这里用的是下面扭曲的部分：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43c692a8002211e988d4509a4c21c90b.jpg" alt></p>
+<p>大体的效果已经出来了，然后就是补上裂纹的效果。</p>
+<p>添加裂纹图片，然后调整到合适的位置和大小，应用阈值，提升纹路效果：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43f7a624002211e99f02509a4c21c90b.jpg" alt></p>
+<p>然后视频里使用按颜色选择工具，将白色部分抠去，然后反相。其实可以反相然后修改图层混合模式就行，这里我选择的是仅变亮：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/441b60a4002211e992e7509a4c21c90b.jpg" alt></p>
+<p>之后再使用蒙板将不需要的地方擦掉即可。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/4445e902002211e99326509a4c21c90b.jpg" alt></p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7gnm9/" target="_blank" rel="noopener" title="gimp练习：Disintegration Effect">https://jlice.top/p/7gnm9/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7hldu/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          OpenCV拼接全景图
+      </div>
+    </a>
+    <a href="../7gf9c/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Docker基础学习笔记</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav">无</ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-02-04T10:57:01+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>利用油猴脚本显示扇贝网真实打卡日记 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="前一段时间发现扇贝网页版显示的打卡日记和手机上看到的不一致，感觉应该是网页版开发滞后的原因。这种不一致给查卡带来了诸多不便，于是就设法解决该问题。 起初我想到的方案是做一个静态页面放到对象存储上，然后对象存储开启静态服务，静态页面通过Ajax请求手机版的RESTful接口获取数据，然后生成打卡日记。不过，通过反复试验发现这种方法行不通。 123$.get(url, function(data)&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用油猴脚本显示扇贝网真实打卡日记">
+<meta property="og:url" content="https://jlice.top/p/7kmxm/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="前一段时间发现扇贝网页版显示的打卡日记和手机上看到的不一致，感觉应该是网页版开发滞后的原因。这种不一致给查卡带来了诸多不便，于是就设法解决该问题。 起初我想到的方案是做一个静态页面放到对象存储上，然后对象存储开启静态服务，静态页面通过Ajax请求手机版的RESTful接口获取数据，然后生成打卡日记。不过，通过反复试验发现这种方法行不通。 123$.get(url, function(data)&amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用油猴脚本显示扇贝网真实打卡日记">
+<meta name="twitter:description" content="前一段时间发现扇贝网页版显示的打卡日记和手机上看到的不一致，感觉应该是网页版开发滞后的原因。这种不一致给查卡带来了诸多不便，于是就设法解决该问题。 起初我想到的方案是做一个静态页面放到对象存储上，然后对象存储开启静态服务，静态页面通过Ajax请求手机版的RESTful接口获取数据，然后生成打卡日记。不过，通过反复试验发现这种方法行不通。 123$.get(url, function(data)&amp;#">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-利用油猴脚本显示扇贝网真实打卡日记" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      利用油猴脚本显示扇贝网真实打卡日记
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-06-13T02:34:46.000Z" itemprop="datePublished">2018-06-13</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-06-13-利用油猴脚本显示扇贝网真实打卡日记.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>前一段时间发现扇贝网页版显示的打卡日记和手机上看到的不一致，感觉应该是网页版开发滞后的原因。这种不一致给查卡带来了诸多不便，于是就设法解决该问题。</p>
+<p>起初我想到的方案是做一个静态页面放到对象存储上，然后对象存储开启静态服务，静态页面通过Ajax请求手机版的RESTful接口获取数据，然后生成打卡日记。不过，通过反复试验发现这种方法行不通。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(url, function(data)&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>直接使用Ajax请求会报错：</p>
+<a id="more"></a>
+<p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</p>
+<p>这是因为服务器不允许跨站。</p>
+<p>然后接触到了用JSONP来进行跨站请求。因为js脚本可以跨站，像静态博客的评论功能就是用的跨站js脚本，JSONP的思路是在请求的地址上携带一个callback参数，服务端以这个callback参数作为函数名包裹JSON数据，然后在返回数据时调用这个函数，就把JSON数据传过来了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: url,</span><br><span class="line">    dataType: <span class="string">'jsonp'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>但是，使用JSONP的前提同样是需要服务器端的配合。假如服务器端不适配JSONP，也就是不返回包裹JSON数据的函数，而是依旧返回JSON，那么JSON数据就会被视为javascript脚本运行，会报错：</p>
+<p>Uncaught SyntaxError: Unexpected token :</p>
+<p>然后想到iframe也可以跨站，于是试试iframe，结果发现依然是想多了：</p>
+<p>Refused to display ‘<em>*</em>‘ in a frame because it set ‘X-Frame-Options’ to ‘deny’.</p>
+<p>也就是iframe也是需要服务器端配合。假如服务器端不允许iframe，那么iframe便不能跨站。</p>
+<p>跨站请求其实也比较危险，例如XSS、CSRF。于是，我决定不通过跨站请求，而是利用油猴脚本来实现我的需求，顺便补充了点jQuery。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         显示真实打卡日记</span></span><br><span class="line"><span class="comment">// @namespace    https://www.shanbay.com/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  显示时区、真实打卡日记、打卡时间</span></span><br><span class="line"><span class="comment">// @author       文剑木然</span></span><br><span class="line"><span class="comment">// @match        https://www.shanbay.com/checkin/user/*</span></span><br><span class="line"><span class="comment">// @grant        MIT</span></span><br><span class="line"><span class="comment">// @require      https://static.baydn.com/static/scripts/jquery-1.7.2.min.js</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="built_in">window</span>.location.href</span><br><span class="line">                    .replace(<span class="string">'www.shanbay.com'</span>, <span class="string">'www.shanbay.com/api/v1'</span>)</span><br><span class="line">                    .replace(<span class="string">'?page'</span>, <span class="string">'?ipp=10&amp;page'</span>);</span><br><span class="line">    $.<span class="keyword">get</span>(url, function(json)&#123;</span><br><span class="line">        <span class="comment">// 显示时区</span></span><br><span class="line">        <span class="keyword">var</span> timezone = json.data[<span class="number">0</span>].user.timezone;</span><br><span class="line">        <span class="keyword">if</span>(json.data.length &gt; <span class="number">0</span> &amp;&amp; timezone !== <span class="string">'Asia/Shanghai'</span>)&#123;</span><br><span class="line">            $(<span class="string">'h2'</span>).html($(<span class="string">'h2'</span>).html() + <span class="string">'（'</span> + timezone +<span class="string">'）'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 修改打卡日记</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">var</span> idata = json.data[i];</span><br><span class="line">            <span class="keyword">var</span> icheckin = $(<span class="string">'#checkin'</span>).children().eq(i);</span><br><span class="line">            <span class="keyword">var</span> number = icheckin.find(<span class="string">'span.number'</span>);</span><br><span class="line">            number.html(<span class="string">' '</span> + idata.num_checkin_days);</span><br><span class="line">            <span class="keyword">var</span> note = icheckin.find(<span class="string">'div.note'</span>);</span><br><span class="line">            <span class="keyword">if</span>(json.data[i].note_length === <span class="number">0</span>)&#123;</span><br><span class="line">                note.html(idata.info);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                note.html(idata.info + <span class="string">' , '</span> + idata.note);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> date = icheckin.find(<span class="string">'div.span4'</span>);</span><br><span class="line">            date.html(<span class="string">'&lt;strong&gt;'</span> + idata.checkin_date + </span><br><span class="line">                      <span class="string">'&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;('</span> +</span><br><span class="line">                      idata.checkin_time.replace(<span class="string">'T'</span>, <span class="string">'&amp;nbsp;&amp;nbsp;'</span>) + <span class="string">')'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>jQuery中，<code>children()</code>指直接子元素，<code>.find()</code>能递归查找子元素，<code>.eq(i)</code>为第i个元素。用jQuery来修改DOM还是十分简便的。</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7kmxm/" target="_blank" rel="noopener" title="利用油猴脚本显示扇贝网真实打卡日记">https://jlice.top/p/7kmxm/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7l2u9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          PPM、PGM、PBM图像格式剖析
+      </div>
+    </a>
+    <a href="../7kemt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">向量微积分基础</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav">无</ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-06-13T10:34:46+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>求单链表交点 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="题目今天面试时，面试官问了这样一个问题：两个单链表相交，怎么求交点。所谓相交，就是两个节点的next指针相同。">
+<meta name="keywords" content="刷题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求单链表交点">
+<meta property="og:url" content="https://jlice.top/p/7qhfm/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="题目今天面试时，面试官问了这样一个问题：两个单链表相交，怎么求交点。所谓相交，就是两个节点的next指针相同。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f51d0ee6039211e98b95509a4c21c90b.png">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f573e938039811e9b2c2509a4c21c90b.png">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/d42139c003fb11e9a7f6509a4c21c90b.png">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/e59a7a1403ff11e9b32a509a4c21c90b.png">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="求单链表交点">
+<meta name="twitter:description" content="题目今天面试时，面试官问了这样一个问题：两个单链表相交，怎么求交点。所谓相交，就是两个节点的next指针相同。">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f51d0ee6039211e98b95509a4c21c90b.png">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-求单链表交点" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      求单链表交点
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-12-19T13:22:33.000Z" itemprop="datePublished">2018-12-19</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-12-19-求单链表交点.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>今天面试时，面试官问了这样一个问题：两个单链表相交，怎么求交点。所谓相交，就是两个节点的next指针相同。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f51d0ee6039211e98b95509a4c21c90b.png" alt></p>
+<a id="more"></a>
+<h2 id="简单解法"><a href="#简单解法" class="headerlink" title="简单解法"></a>简单解法</h2><p>一个简单的思路是：分别遍历这两个链表，并将这两个链表的节点分别保存到两个列表里，然后同步逆序遍历这两个列表，当出现不相同的元素时，则下一个元素就是这两个链表的交点。</p>
+<p>例如，对于上图的两个单链表，遍历上面的单链表得到列表：A, B, C, D, E, F, G；遍历下面的单链表得到列表：H, I, E, F, G。因为单链表相交之后就汇合了，汇合之后的节点就是一样的，而汇合之前的节点不一样，所以同步逆序遍历这两个列表：G-G, F-F, E-E, D-I……于是，E节点就是交点。</p>
+<p>这种做法时间复杂度为<script type="math/tex">O(n)</script>，但空间复杂度为<script type="math/tex">O(n)</script>，有没有空间复杂度更低的解法呢？</p>
+<p>如果使用HashMap存储，先遍历上面的单链表，并把节点存储到HashMap里，然后遍历下面的单链表，每次都看当前节点是否已经存在于HashMap中，如果存在，则该节点就是交点。采用这种做法，不必把两个单链表都遍历完，不过依然没有降低空间复杂度。</p>
+<p>另一种思路是暴力法，也就是遍历这两个链表，判断第一个链表的每个节点是否在第二个链表中，这种做法的时间复杂度为<script type="math/tex">O(n^2)</script>。</p>
+<h2 id="优雅解法"><a href="#优雅解法" class="headerlink" title="优雅解法"></a>优雅解法</h2><p>这个问题比较麻烦的地方在于，这两个单链表相交之前的部分的长度可能不一致。假如这两个单链表长度一致，那么指针p、q只要同步移动，然后首次相遇的地方就是交点了。</p>
+<p>例如，对于图中的两个单链表，假如上面的单链表没有A, B节点，指针p初始指向C节点，那么，指针p、q只要同步移动两次，就会在节点E相遇，E节点就是交点。那么，我们要怎么样让指针p指向C节点后，指针p、q才同步移动呢？</p>
+<p>其实很简单，先遍历一下这两个单链表，得到它们的长度，然后让长的单链表的指针先走长度之差步，就可以了！对于图中的两个单链表，上面的单链表长度为7，下面的单链表长度为5，两个单链表的长度之差为2，且上面的单链表更长，那么就让指针p先走2步（这样就到了C节点），然后指针p、q同步移动即可。</p>
+<h2 id="扩展问题"><a href="#扩展问题" class="headerlink" title="扩展问题"></a>扩展问题</h2><h3 id="如何判断两个单链表是否相交"><a href="#如何判断两个单链表是否相交" class="headerlink" title="如何判断两个单链表是否相交"></a>如何判断两个单链表是否相交</h3><p>这个问题比较简单。显然，如果两个单链表相交，则必然是“Y”形的，而不是“X”形的。只需要判断两个单链表中是否存在相同的元素即可。</p>
+<p>如果这两个单链表相交，则尾节点必然相同，因此，直接遍历到尾节点，然后判断尾节点是否相同即可。还可以把节点存到哈希表，在遍历第二个单链表时，判断节点是否在哈希表中已存在，若已存在则相交。</p>
+<h3 id="如何判断单链表里是否有环"><a href="#如何判断单链表里是否有环" class="headerlink" title="如何判断单链表里是否有环"></a>如何判断单链表里是否有环</h3><p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f573e938039811e9b2c2509a4c21c90b.png" alt></p>
+<p>这个可以采用<strong>快慢指针</strong>的技巧。初始时，指针p、q都位于初始节点，然后每次指针p移动一个节点，指针q移动两个节点，则指针p、q必然在环内相遇。</p>
+<p>为什么指针p、q必然在环内相遇呢？这是因为在环内，可以看成是指针q“追赶”指针p，每次“追赶”1一个节点（也就是相对距离-1），所以必然能相遇。而且，指针p、q相遇时，指针p在环内走过的距离不会超过环的长度。</p>
+<p>LeetCode: <a href="https://leetcode.com/problems/linked-list-cycle/description/" target="_blank" rel="noopener">141. Linked List Cycle</a></p>
+<h3 id="如何求单链表的环的长度"><a href="#如何求单链表的环的长度" class="headerlink" title="如何求单链表的环的长度"></a>如何求单链表的环的长度</h3><p>很简单：根据上一个问题可以知道一个处于环内的节点，固定指针q，然后继续移动指针p（指针p每次移动一个节点），当指针p、q再次相遇时，指针p继续移动的次数就是环的长度。</p>
+<h3 id="如何求单链表中第一个在环里的节点"><a href="#如何求单链表中第一个在环里的节点" class="headerlink" title="如何求单链表中第一个在环里的节点"></a>如何求单链表中第一个在环里的节点</h3><p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/d42139c003fb11e9a7f6509a4c21c90b.png" alt></p>
+<p>假设单链表起点到第一个在环里的节点的距离为<script type="math/tex">n</script>，快慢指针p、q在环内相遇，第一个在环里的节点到相遇点的距离为<script type="math/tex">f</script>，环的长度为<script type="math/tex">L</script>。</p>
+<p>那么，显然，指针p、q相遇时，指针p走过的距离为<script type="math/tex">n+f</script>，指针q走过的距离为<script type="math/tex">n+f+xL</script>（之所以是<script type="math/tex">xL</script>是因为，假如<script type="math/tex">n</script>较大而<script type="math/tex">L</script>较小，那么指针q可能在环内转了好几圈才和指针p相遇）。显然有：</p>
+<script type="math/tex; mode=display">2(n+f) = n+f+xL</script><p>故 <script type="math/tex">n = xL-f, x>0</script>，或者写为：</p>
+<script type="math/tex; mode=display">n = L - f + xL \quad x\geq0</script><p>而指针p、q的相遇点到第一个在环里的节点的距离为<script type="math/tex">L-f</script>。指针p从单链表的起点开始移动，每次移动1个节点，指针q从相遇点开始移动，每次也移动1个节点，那么，指针p、q就会在第一个在环里的节点处相遇。</p>
+<p>LeetCode: <a href="https://leetcode.com/problems/linked-list-cycle-ii/description/" target="_blank" rel="noopener">142. Linked List Cycle II</a></p>
+<h2 id="特殊解法"><a href="#特殊解法" class="headerlink" title="特殊解法"></a>特殊解法</h2><p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/e59a7a1403ff11e9b32a509a4c21c90b.png" alt></p>
+<p>对于本文最开始的问题，还有一种比较特殊的解法。先遍历其中一个链表，遍历到尾节点时，将尾节点的next指针指向另一个链表的起点，然后，问题就转化为求单链表中第一个在环里的节点了。</p>
+<p>后记：</p>
+<p>在LeetCode上刷到了原题：<a href="https://leetcode.com/problems/intersection-of-two-linked-lists/description/" target="_blank" rel="noopener">160. Intersection of Two Linked Lists</a>，还是要多刷题啊！</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7qhfm/" target="_blank" rel="noopener" title="求单链表交点">https://jlice.top/p/7qhfm/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/刷题/">刷题</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7qvfi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          N-sum问题通解
+      </div>
+    </a>
+    <a href="../7qghk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">memset的一个坑</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单解法"><span class="nav-number">2.</span> <span class="nav-text">简单解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优雅解法"><span class="nav-number">3.</span> <span class="nav-text">优雅解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展问题"><span class="nav-number">4.</span> <span class="nav-text">扩展问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断两个单链表是否相交"><span class="nav-number">4.1.</span> <span class="nav-text">如何判断两个单链表是否相交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断单链表里是否有环"><span class="nav-number">4.2.</span> <span class="nav-text">如何判断单链表里是否有环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求单链表的环的长度"><span class="nav-number">4.3.</span> <span class="nav-text">如何求单链表的环的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求单链表中第一个在环里的节点"><span class="nav-number">4.4.</span> <span class="nav-text">如何求单链表中第一个在环里的节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊解法"><span class="nav-number">5.</span> <span class="nav-text">特殊解法</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-12-19T21:22:33+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

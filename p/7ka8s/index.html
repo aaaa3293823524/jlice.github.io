@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>线性最小二乘法推导 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="代数形式最小二乘法在中学时讲过。有一些散点有线性的趋势，用一个一次函数去拟合，使得差距最小化。">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性最小二乘法推导">
+<meta property="og:url" content="https://jlice.top/p/7ka8s/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="代数形式最小二乘法在中学时讲过。有一些散点有线性的趋势，用一个一次函数去拟合，使得差距最小化。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45b9170c002211e989fc509a4c21c90b.jpg">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性最小二乘法推导">
+<meta name="twitter:description" content="代数形式最小二乘法在中学时讲过。有一些散点有线性的趋势，用一个一次函数去拟合，使得差距最小化。">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45b9170c002211e989fc509a4c21c90b.jpg">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-线性最小二乘法推导" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      线性最小二乘法推导
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-06-01T16:28:45.000Z" itemprop="datePublished">2018-06-02</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-06-02-线性最小二乘法推导.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="代数形式"><a href="#代数形式" class="headerlink" title="代数形式"></a>代数形式</h2><p>最小二乘法在中学时讲过。有一些散点有线性的趋势，用一个一次函数去拟合，使得差距最小化。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45b9170c002211e989fc509a4c21c90b.jpg" alt></p>
+<a id="more"></a>
+<p>假设数据点为 $(x_1, y_1), (x_2, y_2),\dots,(x_m, y_m)$ ，使用如下一次函数去拟合：</p>
+<script type="math/tex; mode=display">
+y = w_1 x + w_0</script><p>对于 $x_i$ ，采用上述函数计算出的结果记为 $\hat{y_i}$ ，即：</p>
+<script type="math/tex; mode=display">
+\hat{y_i} = w_1 x_i+w_0</script><p>定义差距为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^m (y_i - \hat{y_i})^2</script><p>现需要最小化这个差距。显然，上式为关于 $w_0$ 和 $w_1$ 的函数（损失函数）。为了方便，将 $\sum\limits_{i=1}^m$ 简记为 $\sum$ ，记：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+f(w_0, w_1) &= \sum (y_i - \hat{y_i})^2 \\
+            &= \sum (y_i - (w_1 x_i + w_0))^2 \\
+            &= \sum (y_i^2 - 2y_ix_iw_1 - 2y_iw_0 + x_i^2w_1^2 + w_0^2 + 2x_iw_0w_1) \\
+\end{split}</script><p>分别对 $w_0, w_1$ 求偏导：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\frac {\partial f} {\partial w_0} &= \sum (-2y_i + 2w_0 + 2x_iw_1) \\
+&= -2 \sum {y_i} + 2mw_0 + 2w_1 \sum {x_i} \\
+\frac {\partial f} {\partial w_1} &= \sum (-2x_iy_i + 2x_i^2w_1 + 2w_0x_i) \\
+&= -2\sum{x_iy_i} + 2w_1\sum {x_i^2} + 2w_0\sum {x_i} \\
+\end{split}</script><p>令：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\frac {\partial f} {\partial w_0} &= 0 \\
+\frac {\partial f} {\partial w_1} &= 0 \\
+\end{split}</script><p>得：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+mw_0 + w_1\sum{x_i} &= \sum{y_i} \\
+w_1\sum{x_i^2} + w_0\sum{x_i} &= \sum{x_i}{y_i} \\
+\end{split}</script><p>联立上面两式可得：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+w_0 &= \frac {\sum{x_i}\sum{x_i y_i} - \sum{y_i}\sum{x_i^2}} {(\sum{x_i})^2 - m\sum{x_i^2}} \\
+w_1 &= \frac {\sum{x_i}\sum{y_i} - m\sum{x_i y_i}} {(\sum{x_i})^2 - m\sum{x_i^2}} \\
+\end{split}</script><p>注意， $\sum{x_i^2} \ne (\sum{x_i})^2$ ，计算时要细心。</p>
+<h2 id="矩阵形式"><a href="#矩阵形式" class="headerlink" title="矩阵形式"></a>矩阵形式</h2><p>记 $\mathbf{X}$ 为 $m\times n$ 的矩阵，表示有 $m$ 个样本点，特征维数为 $n$ 维； $\mathbf{y}$ 为 $m$ 维列向量，表示这 $m$ 个样本点的实际值； $\mathbf{\hat{y}}$ 为 $m$ 维列向量，表示这 $m$ 个样本点的估计值； $\mathbf{w}$ 为 $n$ 维列向量，且：</p>
+<script type="math/tex; mode=display">
+\mathbf{\hat{y}} = \mathbf{X}\mathbf{w}</script><p>则：</p>
+<script type="math/tex; mode=display">
+\mathbf{y} - \mathbf{\hat{y}} = \mathbf{y} - \mathbf{X}\mathbf{w}</script><p>上式的结果是一个列向量，而我们需要的是其平方和。根据矩阵乘法的定义，损失函数为：</p>
+<script type="math/tex; mode=display">
+f(\mathbf{w}) = (\mathbf{y} - \mathbf{X}\mathbf{w})^{\rm T}(\mathbf{y} - \mathbf{X}\mathbf{w})</script><p>现要求 $\frac {\partial f} {\partial \mathbf{w}}$ ，可 $\mathbf{w}$ 是个向量呀，这个该怎么求呢？</p>
+<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><p><strong>【实数值函数对向量求导】</strong></p>
+<script type="math/tex; mode=display">
+\frac {\partial f} {\partial \mathbf{x}} = 
+\begin{bmatrix}
+    \frac{\partial f}{x_1} & \frac{\partial f}{x_2} & \dots & \frac{\partial f}{x_n} \\
+\end{bmatrix}</script><p>其中， $\mathbf{x}= \left[x_1, x_2, \dots, x_n\right]^{\rm T}$ 为 $n$ 维列向量， $f$ 是 $\mathbf{x}$ 上 $\Re^n \to \Re$ 的函数（也就是， $f$ 的输入是 $n$ 维列向量，输出是实数）</p>
+<p><strong>【向量值函数对向量求导】</strong></p>
+<script type="math/tex; mode=display">
+\frac {\partial \mathbf{y}} {\partial \mathbf{x}} = 
+\begin{bmatrix}
+\frac{\partial{y_1}}{\partial x_1} & \frac{\partial{y_1}}{\partial x_2} & \dots & \frac{\partial{y_1}}{\partial x_n} \\
+\frac{\partial{y_2}}{\partial x_1} & \frac{\partial{y_2}}{\partial x_2} & \dots & \frac{\partial{y_2}}{\partial x_n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial{y_m}}{\partial x_1} & \frac{\partial{y_m}}{\partial x_2} & \dots & \frac{\partial{y_m}}{\partial x_n} \\
+\end{bmatrix}</script><p>即：</p>
+<script type="math/tex; mode=display">
+(\frac {\partial \mathbf{y}} {\partial \mathbf{x}})_{ij} = \frac{\partial{y_i}}{\partial x_j}</script><p>其中， $\mathbf{x}= \left[x_1, x_2, \dots, x_n\right]^{\rm T}$ 为 $n$ 维列向量， $\mathbf{y}$ 是定义在 $\mathbf{x}$ 上 $\Re^n \to \Re^m$ 的函数（也就是， $\mathbf{y}$ 的输入是 $n$ 维列向量，输出是 $m$ 维列向量），上面的矩阵称为<strong>雅可比（Jacobi）矩阵</strong>。</p>
+<p><strong>【链式求导】</strong></p>
+<p>设 $\mathbf{x}$ 为列向量，复合函数 $\mathbf{h(\mathbf{x}) = \mathbf{f(\mathbf{g(\mathbf{x})})}}$  ，其中向量值函数（也就是函数的值域是向量）$\mathbf{f(\mathbf{g})}$ 和 $\mathbf{g(\mathbf{x})}$ 均可微，则：</p>
+<script type="math/tex; mode=display">
+\mathbf{h}^\prime(\mathbf{x}) = \mathbf{f}^\prime(\mathbf{g(\mathbf{x})})\mathbf{g}^\prime(\mathbf{x})</script><p>和代数形式的链式求导类似。</p>
+<h3 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h3><p>记 $\mathbf{u(\mathbf{w})} = \mathbf{y} - \mathbf{X}\mathbf{w}$ ，则：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+f &= \mathbf{u}^{\rm T} \mathbf{u} \\ 
+  &= \sum\nolimits_i {u_i^2} \\
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\frac {\partial f} {\partial \mathbf{u}}
+&=  
+\begin{bmatrix}
+\frac {\partial {\sum\nolimits_i {u_i^2}}} {\partial {u_1}} & \frac {\partial {\sum\nolimits_i {u_i^2}}} {\partial {u_2}} & \dots & \frac {\partial {\sum\nolimits_i {u_i^2}}} {\partial {u_i}} \\
+\end{bmatrix} \\ 
+&= 
+\begin{bmatrix}
+2u_1 & 2u_2 & \dots & 2u_i
+\end{bmatrix} \\ 
+&= 2
+\begin{bmatrix}
+u_1 & u_2 & \dots & u_i
+\end{bmatrix} = 2 \mathbf{u}^{\rm T}\\ 
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\mathbf{u} &= \mathbf{y} - \mathbf{X}\mathbf{w}  \\
+&= 
+\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_m \\
+\end{bmatrix} - 
+\begin{bmatrix}
+x_{11} & x_{12} & \dots & x_{1n} \\
+x_{21} & x_{22} & \dots & x_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{m1} & x_{m2} & \dots & x_{mn} \\
+\end{bmatrix}
+\begin{bmatrix}
+w_1 \\ w_2 \\ \vdots \\ w_n \\
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+y_1 - \sum {x_{1i}w_i} \\ 
+y_2 - \sum {x_{2i}w_i} \\
+\vdots \\
+y_m - \sum {x_{mi}w_i} \\
+\end{bmatrix}
+\\
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+(\frac{\partial {\mathbf{u}}}{\partial {\mathbf{w}}})_{ij} &= \frac{\partial u_i}{\partial w_j} \\
+&= \frac{\partial (y_i - (x_{i1}w_1 + x_{i2}w_2 + \dots + x_{in}w_n))}{\partial w_j} \\ 
+&= -x_{ij}
+\end{split}</script><script type="math/tex; mode=display">
+\frac{\partial \mathbf{u}}{\partial \mathbf{w}} = - \mathbf{X}</script><p>使用链式求导：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\frac {\partial f} {\partial {\mathbf{w}}} &= \frac {\partial f} {\partial \mathbf{u}} \frac {\partial \mathbf{u}} {\partial \mathbf{w}} \\ 
+&= 2 \mathbf{u}^{\rm T} (- \mathbf{X}) \\
+&= -2(\mathbf{y} - \mathbf{X}\mathbf{w})^{\rm T}\mathbf{X} \\
+&= -2 (\mathbf{y}^{\rm T} - (\mathbf{X}\mathbf{w})^{\rm T})\mathbf{X} \\ 
+&= -2 (\mathbf{y}^{\rm T} - \mathbf{w}^{\rm T}\mathbf{X}^{\rm T}) \mathbf{X} \\ 
+&= -2 (\mathbf{y}^{\rm T}\mathbf{X} - \mathbf{w}^{\rm T}\mathbf{X}^{\rm T}\mathbf{X})
+\end{split}</script><p>令：</p>
+<script type="math/tex; mode=display">
+\frac{\partial f}{\partial \mathbf{w}} = \mathbf{0}</script><p>得：</p>
+<script type="math/tex; mode=display">
+\mathbf{w}^{\rm T}\mathbf{X}^{\rm T}\mathbf{X} = \mathbf{y}^{\rm T}\mathbf{X}</script><p>若 $\mathbf{X}^{\rm T}\mathbf{X}$ 可逆，则两边同时右乘 $(\mathbf{X}^{\rm T}\mathbf{X})^{-1}$ ，得：</p>
+<script type="math/tex; mode=display">
+\mathbf{w}^{\rm T} = \mathbf{y}^{\rm T}\mathbf{X}(\mathbf{X}^{\rm T}\mathbf{X})^{-1}</script><p>两边同时转置：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\mathbf{w} &= (\mathbf{y}^{\rm T}\mathbf{X}(\mathbf{X}^{\rm T}\mathbf{X})^{-1})^{\rm T} \\ 
+&= ((\mathbf{X}^{\rm T}\mathbf{X})^{-1})^{\rm T}\mathbf{X}^{\rm T}(\mathbf{y}^{\rm T})^{\rm T} \\ 
+&= ((\mathbf{X}^{\rm T}\mathbf{X})^{\rm T})^{-1}\mathbf{X}^{\rm T}\mathbf{y} \\ 
+&= (\mathbf{X}^{\rm T}(\mathbf{X}^{\rm T})^{\rm T})^{-1}\mathbf{X}^{\rm T}\mathbf{y} \\ 
+&= (\mathbf{X}^{\rm T}\mathbf{X})^{-1}\mathbf{X}^{\rm T}\mathbf{y} \\ 
+\end{split}</script>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7ka8s/" target="_blank" rel="noopener" title="线性最小二乘法推导">https://jlice.top/p/7ka8s/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/机器学习/">机器学习</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7kemt/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          向量微积分基础
+      </div>
+    </a>
+    <a href="../7k91v/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">解决Dia在Linux上的输入法问题</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代数形式"><span class="nav-number">1.</span> <span class="nav-text">代数形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵形式"><span class="nav-number">2.</span> <span class="nav-text">矩阵形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预备知识"><span class="nav-number">2.1.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算过程"><span class="nav-number">2.2.</span> <span class="nav-text">计算过程</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-06-02T00:28:45+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

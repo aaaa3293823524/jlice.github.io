@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>木然轩 - 文剑木然的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="文剑木然的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="木然轩">
+<meta property="og:url" content="https://jlice.top/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="文剑木然的个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="木然轩">
+<meta name="twitter:description" content="文剑木然的个人博客">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body>
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: 'content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main">
+    <article id="post-快速幂取余算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7tbs7/">快速幂取余算法</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7tbs7/" class="article-date">
+	  <time datetime="2019-03-21T16:07:48.000Z" itemprop="datePublished">2019-03-22</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>计算a的b次方模m：</p>
+<script type="math/tex; mode=display">a^b\ \%\ m</script><p>暴力的做法是将a乘b次，最后对m取模。不过，这样可能导致溢出，时间复杂度也很高。</p>
+<p>现在考虑，求3的10次方，最少需要做几次乘法运算。</p>
+<p><img src="https://img-1256819794.cos.ap-beijing.myqcloud.com/410b153a4c5a11e9a1b8dc4a3ef82d4f.jpg" alt></p>
+        <p class="article-more-link">
+          <a href="p/7tbs7/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-并查集初步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7ta3x/">并查集初步</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7ta3x/" class="article-date">
+	  <time datetime="2019-03-20T03:57:31.000Z" itemprop="datePublished">2019-03-20</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>有若干节点，并将其中一些节点对进行连接，要判断任意两个节点是否连通（有路径到达，而不要求直接连接），连通后就不会断开连通关系，此时就可以使用并查集。并查集擅长动态维护许多具有传递性的关系，能在无向图中维护节点之间的连通性。</p>
+<p>要判断两个节点是否连通，可以把连通的节点加入到各自的集合里，也就是，同一个集合里的节点都是连通的，不同集合里的节点是不连通的。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/33a675d24ac811e98294509a4c21c90b.png" alt></p>
+        <p class="article-more-link">
+          <a href="p/7ta3x/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-解决Deepin桌面下Office图标显示为压缩包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7t7af/">解决Deepin桌面下Office图标显示为压缩包</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7t7af/" class="article-date">
+	  <time datetime="2019-03-17T15:03:25.000Z" itemprop="datePublished">2019-03-17</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>在使用ArchLinux系的系统（比如我用的Manjaro），使用Deepin桌面时，Office图标会显示为压缩包：</p>
+<p><img src="https://img-1256819794.cos.ap-beijing.myqcloud.com/d772cda848c511e9ba48dc4a3ef82d4f.jpg" alt></p>
+<p>虽然说，docx、xlsx、pptx格式其实也就是zip包，但图标错乱还是会让强迫症的我感觉很难受。不过，在Xfce4桌面环境下是没有这个问题的，Office图标正确显示为Office图标，但Deepin下就有这种问题，有点奇怪。</p>
+        <p class="article-more-link">
+          <a href="p/7t7af/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-《实战Java高并发程序设计》读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7t3gc/">《实战Java高并发程序设计》读书笔记</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7t3gc/" class="article-date">
+	  <time datetime="2019-03-14T04:12:21.000Z" itemprop="datePublished">2019-03-14</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>这两天快速看了下《实战Java高并发程序设计》这本书，对Java高并发程序有一个初步的认识。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/c3864a28460f11e9b111509a4c21c90b.jpg" alt></p>
+<p>这本书是在iPad上用MarginNotes 3看的，只是做了些笔记，还没进行代码实践，后续还需要细化。</p>
+        <p class="article-more-link">
+          <a href="p/7t3gc/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-拼多多2020实习笔试题题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7szz3/">拼多多2020实习笔试题题解</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7szz3/" class="article-date">
+	  <time datetime="2019-03-11T01:03:03.000Z" itemprop="datePublished">2019-03-11</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>题解是交卷后做的，不保证AC。</p>
+<h2 id="题目1"><a href="#题目1" class="headerlink" title="题目1"></a>题目1</h2><p><strong>题目描述</strong></p>
+<p>给出长虔都为n的两个整数数组a[n]和b[n]，特殊运算 S = a[0]*b[0] + … + a[n-1]*b[n-1]，你可以改变a数组的顺序使得运算S得到的值最小，给出最终的最小值。<br>数组长度n大于50，对于每个元素X，0&lt;=X&lt;=100。</p>
+        <p class="article-more-link">
+          <a href="p/7szz3/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-N-sum问题通解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7qvfi/">N-sum问题通解</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7qvfi/" class="article-date">
+	  <time datetime="2019-01-01T03:42:48.000Z" itemprop="datePublished">2019-01-01</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>N-sum 问题还是比较典型的，这里进行一下小结。</p>
+<p>首先描述一下 N-sum 问题：有一个数组 nums，要求从数组中选择 n 个数，使得这些数的和恰好为 target ，输出所有不重复的可行组合。</p>
+<p>如果采用暴力解法，显然时间复杂度为 $O(N^n)$，这一般是不可取的。</p>
+<p>下面是 N-sum 问题的LeeCode链接：</p>
+        <p class="article-more-link">
+          <a href="p/7qvfi/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-求单链表交点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7qhfm/">求单链表交点</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7qhfm/" class="article-date">
+	  <time datetime="2018-12-19T13:22:33.000Z" itemprop="datePublished">2018-12-19</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>今天面试时，面试官问了这样一个问题：两个单链表相交，怎么求交点。所谓相交，就是两个节点的next指针相同。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/f51d0ee6039211e98b95509a4c21c90b.png" alt></p>
+        <p class="article-more-link">
+          <a href="p/7qhfm/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-memset的一个坑" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7qghk/">memset的一个坑</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7qghk/" class="article-date">
+	  <time datetime="2018-12-18T16:56:30.000Z" itemprop="datePublished">2018-12-19</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>为数组赋初值是很常见的操作，如果不赋初值，默认就是随机值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果想将a中的元素全部赋为0，第2行可以写为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>]&#123;<span class="number">0</span>&#125;;</span><br></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a href="p/7qghk/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-详解Minimax算法与α-β剪枝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7q6ye/">详解Minimax算法与α-β剪枝</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7q6ye/" class="article-date">
+	  <time datetime="2018-12-10T03:02:36.000Z" itemprop="datePublished">2018-12-10</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>在局面确定的双人对弈里，常采用博弈树搜索。我方追求更大的赢面，而对方会设法降低我方的赢面。由于局面确定，因此可以对赢面进行评估。我方往较大赢面的方向走，同时考虑对方的走法。由于对方的走法不确定，就假设对方会选择最大程度降低我方赢面的方向走，我方应规避那些对方可以大幅降低我方赢面的走法。</p>
+<h2 id="Minimax算法"><a href="#Minimax算法" class="headerlink" title="Minimax算法"></a>Minimax算法</h2><p>称我方为<code>MAX</code>，对方为<code>MIN</code>，图示如下：</p>
+        <p class="article-more-link">
+          <a href="p/7q6ye/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Linux下实用批处理脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="p/7q1p8/">Linux下实用批处理脚本</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="p/7q1p8/" class="article-date">
+	  <time datetime="2018-12-05T09:32:45.000Z" itemprop="datePublished">2018-12-05</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>经常需要在Linux下批量处理图片，想了想，还是写个实用的批处理小脚本一劳永逸。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>SRC为待处理目录；DST为目标目录，也就是保存处理后的文件的目录；SFX用于设置文件名后缀，如果为空就不修改文件名后缀。如果SRC有子目录，DST将和SRC有相同的子目录结构。脚本中的<code>convert</code>命令修改成相应的处理命令。</p>
+        <p class="article-more-link">
+          <a href="p/7q1p8/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="page/5/">5</a><a class="extend next" rel="next" href="page/2/">下一页 &raquo;</a>
+  </nav>
+</section>
+          <aside id="sidebar">
+  <div class="widget-wrap">
+    <h3 class="widget-title">关注我</h3>
+    <div class="widget widget_athemes_social_icons">
+      <div class="side-avatar-wrap">
+        <img class="side-avatar" src="/css/images/avatar.jpg">
+      </div>
+      <div class="side-author">文剑木然</div>
+    	<ul class="clearfix widget-social-icons">   
+     			  <li><a href="tencent://AddContact/?subcmd=all&amp;uin=1121672253" title="QQ"><i class="fa fa-qq" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/wechat.html" title="WeChat"><i class="fa fa-wechat" aria-hidden="true"></i></a></li> 
+            <li><a href="mailto:1121672253@qq.com" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
+     			  <li><a href="https://github.com/jlice" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/atom.xml" title="Rss"><i class="fa fa-rss" aria-hidden="true"></i></a></li> 
+   		</ul>
+    </div>
+  </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+          <li class="side-li">
+            <a href="p/7tbs7/">快速幂取余算法</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7ta3x/">并查集初步</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7t7af/">解决Deepin桌面下Office图标显示为压缩包</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7t3gc/">《实战Java高并发程序设计》读书笔记</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7szz3/">拼多多2020实习笔试题题解</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7qvfi/">N-sum问题通解</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7qhfm/">求单链表交点</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7qghk/">memset的一个坑</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7q6ye/">详解Minimax算法与α-β剪枝</a>
+          </li>
+          <li class="side-li">
+            <a href="p/7q1p8/">Linux下实用批处理脚本</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+      </div>
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css">
+  <script src="fancybox/jquery.fancybox.pack.js"></script>
+<script src="js/scripts.js"></script>
+  <script src="js/home.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>拼多多2020实习笔试题题解 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="题解是交卷后做的，不保证AC。 题目1题目描述 给出长虔都为n的两个整数数组a[n]和b[n]，特殊运算 S = a[0]*b[0] + … + a[n-1]*b[n-1]，你可以改变a数组的顺序使得运算S得到的值最小，给出最终的最小值。数组长度n大于50，对于每个元素X，0&amp;lt;=X&amp;lt;=100。">
+<meta name="keywords" content="刷题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拼多多2020实习笔试题题解">
+<meta property="og:url" content="https://jlice.top/p/7szz3/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="题解是交卷后做的，不保证AC。 题目1题目描述 给出长虔都为n的两个整数数组a[n]和b[n]，特殊运算 S = a[0]*b[0] + … + a[n-1]*b[n-1]，你可以改变a数组的顺序使得运算S得到的值最小，给出最终的最小值。数组长度n大于50，对于每个元素X，0&amp;lt;=X&amp;lt;=100。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-1256819794.cos.ap-beijing.myqcloud.com/666f6d1e43a211e99540dc4a3ef82d4f.jpg">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拼多多2020实习笔试题题解">
+<meta name="twitter:description" content="题解是交卷后做的，不保证AC。 题目1题目描述 给出长虔都为n的两个整数数组a[n]和b[n]，特殊运算 S = a[0]*b[0] + … + a[n-1]*b[n-1]，你可以改变a数组的顺序使得运算S得到的值最小，给出最终的最小值。数组长度n大于50，对于每个元素X，0&amp;lt;=X&amp;lt;=100。">
+<meta name="twitter:image" content="https://img-1256819794.cos.ap-beijing.myqcloud.com/666f6d1e43a211e99540dc4a3ef82d4f.jpg">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-拼多多2020实习笔试题题解" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      拼多多2020实习笔试题题解
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2019-03-11T01:03:03.000Z" itemprop="datePublished">2019-03-11</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2019/2019-03-11-拼多多2020实习笔试题题解.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <p>题解是交卷后做的，不保证AC。</p>
+<h2 id="题目1"><a href="#题目1" class="headerlink" title="题目1"></a>题目1</h2><p><strong>题目描述</strong></p>
+<p>给出长虔都为n的两个整数数组a[n]和b[n]，特殊运算 S = a[0]*b[0] + … + a[n-1]*b[n-1]，你可以改变a数组的顺序使得运算S得到的值最小，给出最终的最小值。<br>数组长度n大于50，对于每个元素X，0&lt;=X&lt;=100。</p>
+<a id="more"></a>
+<p><strong>输入描述</strong></p>
+<p>输入一共三行。<br>第一行为n，表示两个数组的长度。<br>第二行包括n个数字，用空格隔开，是a数组的值。<br>第三行包括n个数字，用空格隔幵，是b数组的值。</p>
+<p><strong>输出描述</strong></p>
+<p>输出一行，包含一个数字，表示最小的S值。</p>
+<p><strong>示例1</strong></p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1 1 3</span><br><span class="line">10 30 20</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">80</span><br></pre></td></tr></table></figure>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>水题。先对数组a、b排序，一个升序遍历一个降序遍历。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">n = int(input())</span><br><span class="line">a = sorted(list(map(int, input().split())))</span><br><span class="line">b = sorted(list(map(int, input().split())), reverse=<span class="literal">True</span>)</span><br><span class="line">res = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    res += a[i] * b[i]</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<h2 id="题目2"><a href="#题目2" class="headerlink" title="题目2"></a>题目2</h2><p><strong>题目描述</strong></p>
+<p>小明给儿子小小明买了一套英文字母卡片（总共包合52张，区分大小写）,小小明把卡片丢在地上玩耍，并从中取出若干张排成一排，形成了一个卡片序列。<br>此时．小明需要将卡片序列中的重复字母剔除（同一个字母的大小写只保留一个）。<br>请问，所有可能的结果中，字母序最小（不区分大小写）的序列的第一张卡片上是哪个字母？ </p>
+<p><strong>输入描述</strong></p>
+<p>一行输入，包合一个非空字符串，表示卡片序列，长度为 N（1＜=N＜=52）。 </p>
+<p><strong>输出描述</strong></p>
+<p>一行输出，包合一个字母（如果结果是大写字母，则需要转成小写）。  </p>
+<p><strong>示例1</strong> </p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xaBXY</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>说明</p>
+<p>剔除完后的结果为abxy</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>这道题题意比较绕。大意就是，52个字母中的若干个组成的一个序列，对于每对重复字母（不区分大小写），都剔除其中一个，由于剔除的位置不同，处理后的序列有多种情况，从中找到字母序最小的，返回其首字母。</p>
+<p>例如，xaBXY，其中x重复出现，剔除其中一个x，有两种情况：aBXY、xaBY，前者的字母序最小，所以返回其首字母a。<br>又如，bBa，有两种情况：Ba、ba，两者不区分大小写是一样的，首字母是b。<br>又如，cDadC，字母序最小的序列是adC，返回a。</p>
+<p>理清楚题意后，解决起来就比较简单。考虑哪些字母可能成为序列的首字母。从左往右扫描，如果遇到只出现一次的字母，由于该字母不会被剔除，所以其后的字母将不会成为首字母，将该字母加入待选首字母并结束扫描；如果遇到出现两次的字母，若第一次遇到该字母，则将该字母加入待选并继续扫描，但若第二次遇到该字母，就需要停止扫描了，因为如果剔除前一个该字母，则当前位置的该字母将会被保留，所以其后的字母将不会成为首字母。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">s = input().lower()</span><br><span class="line">cnt = Counter(list(s))</span><br><span class="line">rec = set()</span><br><span class="line">heads = []</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">    <span class="keyword">if</span> cnt[c] == <span class="number">1</span>:</span><br><span class="line">        heads.append(c)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> c <span class="keyword">in</span> rec:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            heads.append(c)</span><br><span class="line">            rec.add(c)</span><br><span class="line">print(min(heads))</span><br></pre></td></tr></table></figure>
+<h2 id="题目3"><a href="#题目3" class="headerlink" title="题目3"></a>题目3</h2><p><strong>题目描述</strong></p>
+<p>小镇沿街分布（可以理解为都在数轴上），有n家银行（位置以数轴的坐标表示，金额表示可以被抢走的金额），两个绑匪试图分别抢劫一个银行，为了让警方多奔波他们商定选择的两个银行距离不小于d，请问符合约定的情况下他们能抢到的总金额最大是多少？ </p>
+<p><strong>输入描述</strong></p>
+<p>输入包括 n+1 行。<br>第一行包含两个数字n和d（1&lt;=n&lt;=200000，1&lt;=d&lt;=100000000)，n表示银行的数量，d表示约定的距离。<br>下面n行，每一行包括两个数字a, b（1&lt;=a,b&lt;=100000000），分别表示坐标和金额，空格分隔。 </p>
+<p><strong>输出描述</strong></p>
+<p>输出一个数字，表示可以获得的最大金额。 </p>
+<p><strong>示例1</strong></p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6 3</span><br><span class="line">1 1</span><br><span class="line">3 5</span><br><span class="line">4 8</span><br><span class="line">6 4</span><br><span class="line">10 3</span><br><span class="line">11 2</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11</span><br></pre></td></tr></table></figure>
+<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><p>首先，需要对银行按位置排序。对于每家银行，找到其右侧符合距离限制的金额最大值。</p>
+<p><img src="https://img-1256819794.cos.ap-beijing.myqcloud.com/666f6d1e43a211e99540dc4a3ef82d4f.jpg" alt></p>
+<p>由于每次都需要某位置及其右侧的金额最大值，不妨先计算出来，存为后缀max数组。然后，对于每家银行，找到其右侧符合距离限制且最近的银行，取其后缀max数组的值，即右侧银行可获得的最大金额，并更新可获得的最大金额。</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, d;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; d;</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; banks(n, make_pair(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; banks[i].first &gt;&gt; banks[i].second;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(banks.begin(), banks.end(), [](pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; a, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a.first &lt; b.first;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rmax(n, banks.back().second);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        rmax[i] = max(banks[i].second, rmax[i+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (banks[j].first - banks[i].first &gt;= d) &#123;</span><br><span class="line">                res = max(res, banks[i].second + rmax[j]);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="题目4"><a href="#题目4" class="headerlink" title="题目4"></a>题目4</h2><p><strong>题目描述</strong></p>
+<p>一个合法的圆括号表达式满足一下条件：<br>1．””空字符串被认为是合法的<br>2．如果字符串”X”与”Y”是合法的，则”XY”也被认为是合法的<br>3．如果字符串”X”是合法的，则”(X)”也是合法的<br>例子：””, “()”, “()()”, “(())”这些都是合法的<br>现给出两个不保证合法的由圆括号组成的字符串，你需要交错这两个圆括号序列（在组成的新字符串中，每个初始字符串都保持原来的顺序）得到一个新的合法的圆括号表达式（不同的交错方式可能会得到相同的表达式，这种情况分开计数），求共有多少结果合法的交错方式（无法得到合法的圆括号表达式则输出0），输出结果模 10^9+7 的值(^符号是乘方的意思） </p>
+<p><strong>输入描述</strong></p>
+<p>输入包括两行，分别是两个只有”(和”)”组成的字符串，长度小于2500</p>
+<p><strong>输出描述</strong></p>
+<p>输出为一个数字，表示合法的交错方式数量模上10^9+7的结果</p>
+<p><strong>示例1</strong></p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(()</span><br><span class="line">())</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">19</span><br></pre></td></tr></table></figure>
+<h3 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h3><p>好吧，不会。。。</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7szz3/" target="_blank" rel="noopener" title="拼多多2020实习笔试题题解">https://jlice.top/p/7szz3/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/刷题/">刷题</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7t3gc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          《实战Java高并发程序设计》读书笔记
+      </div>
+    </a>
+    <a href="../7qvfi/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">N-sum问题通解</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目1"><span class="nav-number">1.</span> <span class="nav-text">题目1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">1.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目2"><span class="nav-number">2.</span> <span class="nav-text">题目2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-1"><span class="nav-number">2.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目3"><span class="nav-number">3.</span> <span class="nav-text">题目3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-2"><span class="nav-number">3.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目4"><span class="nav-number">4.</span> <span class="nav-text">题目4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-3"><span class="nav-number">4.1.</span> <span class="nav-text">题解</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2019-03-11T09:03:03+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

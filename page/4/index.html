@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>木然轩 - 文剑木然的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="文剑木然的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="木然轩">
+<meta property="og:url" content="https://jlice.top/page/4/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="文剑木然的个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="木然轩">
+<meta name="twitter:description" content="文剑木然的个人博客">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body>
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main">
+    <article id="post-TensorFlow基础入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hmah/">TensorFlow基础入门</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hmah/" class="article-date">
+	  <time datetime="2018-03-07T07:53:56.000Z" itemprop="datePublished">2018-03-07</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="TensorFlow安装"><a href="#TensorFlow安装" class="headerlink" title="TensorFlow安装"></a>TensorFlow安装</h2><p>CPU版本直接<code>pip install tf-nightly</code>即可。</p>
+<p>GPU版本需要安装显卡驱动、cuda、cudnn，注意版本。若手动安装cuda还要将cuda的lib64目录加入<code>LD_LIBRARY_PATH</code>环境变量。然后使用<code>pip install tf-nightly-gpu</code>安装即可。</p>
+<p>在Python中一般使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
+<p>来import tensorflow。</p>
+        <p class="article-more-link">
+          <a href="../../p/7hmah/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-OpenCV拼接全景图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hldu/">OpenCV拼接全景图</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hldu/" class="article-date">
+	  <time datetime="2018-03-06T12:18:54.000Z" itemprop="datePublished">2018-03-06</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>OpenCV自带了图像拼接算法stitch，而且效果还不错。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/4465c5fe002211e9b4c2509a4c21c90b.jpg" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7hldu/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-gimp练习：Disintegration-Effect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7gnm9/">gimp练习：Disintegration Effect</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7gnm9/" class="article-date">
+	  <time datetime="2018-02-04T02:57:01.000Z" itemprop="datePublished">2018-02-04</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>在Youtube上看到了一个Gimp教程：<a href="https://www.youtube.com/watch?v=kUt2cditN1g" target="_blank" rel="noopener">GIMP Tutorial: Disintegration Effect</a>，就来练习一下。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/43205122002211e9b881509a4c21c90b.jpg" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7gnm9/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Docker基础学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7gf9c/">Docker基础学习笔记</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7gf9c/" class="article-date">
+	  <time datetime="2018-01-27T14:24:26.000Z" itemprop="datePublished">2018-01-27</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="Docker基本使用"><a href="#Docker基本使用" class="headerlink" title="Docker基本使用"></a>Docker基本使用</h2><p><code>docker search</code>  搜索镜像</p>
+<p><code>docker pull REPOSITORY[:TAG]</code>  获取镜像</p>
+<p><code>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code>  运行Docker容器。<br>（如果本地没有镜像会自动从仓库获取）</p>
+<ul>
+<li><code>-d</code> 后台运行</li>
+<li><code>-P</code> 容器端口随机映射到宿主机</li>
+<li><code>-p 宿主机端口:容器端口</code> 端口绑定</li>
+<li><code>-i</code> 启动一个可交互容器</li>
+<li><code>-t</code> 使用虚拟终端关联到容器的标准输入输出</li>
+<li><code>-v 宿主机目录:容器目录</code> 挂载数据卷</li>
+<li><code>--rm</code> 使用后销毁</li>
+</ul>
+        <p class="article-more-link">
+          <a href="../../p/7gf9c/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Linux使用crontab设定计划任务" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7gbw9/">Linux使用crontab设定计划任务</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7gbw9/" class="article-date">
+	  <time datetime="2018-01-24T13:45:19.000Z" itemprop="datePublished">2018-01-24</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="crontab命令用法"><a href="#crontab命令用法" class="headerlink" title="crontab命令用法"></a>crontab命令用法</h2><p><code>crontab -e</code> 编辑计划任务</p>
+<p><code>crontab -l</code> 列出计划任务</p>
+<p><code>crontab -r</code> 移除计划任务</p>
+<p>使用<code>select-editor</code>命令可以选择编辑器，也可以通过<code>EDITOR</code>环境变量来设置默认编辑器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export EDITOR=/usr/bin/vim</span><br></pre></td></tr></table></figure>
+<p>基本原理是系统每分钟检查下crontab，然后执行生效的任务。</p>
+        <p class="article-more-link">
+          <a href="../../p/7gbw9/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Python单元测试unittest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7gbvt/">Python单元测试unittest</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7gbvt/" class="article-date">
+	  <time datetime="2018-01-24T13:29:56.000Z" itemprop="datePublished">2018-01-24</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/42fb6f2c002211e9b3e4509a4c21c90b.png" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7gbvt/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-安装ArchLinux成功，纪念一下" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7fbfe/">安装ArchLinux成功，纪念一下</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7fbfe/" class="article-date">
+	  <time datetime="2017-12-22T18:02:01.000Z" itemprop="datePublished">2017-12-23</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/42adf652002211e9a165509a4c21c90b.jpg" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7fbfe/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7fa9t/">MySQL基础</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7fa9t/" class="article-date">
+	  <time datetime="2017-12-21T17:05:59.000Z" itemprop="datePublished">2017-12-22</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="MySQL环境搭建"><a href="#MySQL环境搭建" class="headerlink" title="MySQL环境搭建"></a>MySQL环境搭建</h2><p>安装MySQL：<code>sudo apt install mysql-server mysql-client</code></p>
+<p>验证MySQL已启动：<code>sudo netstat -anp | grep mysql</code></p>
+<p>启动MySQL（三种均可）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysql start</span><br><span class="line">sudo /etc/init.d/mysql start</span><br><span class="line">sudo systemctl start mysql.service</span><br></pre></td></tr></table></figure></p>
+<p>查看MySQL运行状态（三种均可）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mysql status</span><br><span class="line">/etc/init.d/mysql status</span><br><span class="line">systemctl status mysql.service</span><br></pre></td></tr></table></figure></p>
+        <p class="article-more-link">
+          <a href="../../p/7fa9t/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-数据可视化之matplotlib" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7e0au/">数据可视化之matplotlib</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7e0au/" class="article-date">
+	  <time datetime="2017-11-10T08:06:23.000Z" itemprop="datePublished">2017-11-10</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/41f99ac0002211e99a79509a4c21c90b.png" alt></p>
+<p>Artist是图像上所有可见元素的基类，以对象的方式对可见元素进行描述。  </p>
+<p>图像渲染依赖于Backend，Backend作为后端绘图渲染引擎，支持GUI方式（直接将图像显示在屏幕上，如GTK、WX等）与非GUI方式（输出为某种格式的文件，如PS、AGG等）。</p>
+        <p class="article-more-link">
+          <a href="../../p/7e0au/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Numpy使用教程（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7dvvr/">Numpy使用教程（二）</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7dvvr/" class="article-date">
+	  <time datetime="2017-11-06T08:39:16.000Z" itemprop="datePublished">2017-11-06</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="numpy随机抽样"><a href="#numpy随机抽样" class="headerlink" title="numpy随机抽样"></a>numpy随机抽样</h2><p><strong>随机数生成</strong></p>
+<p><code>numpy.random.rand(d0, d1, ..., dn)</code> 方法的作用为：指定一个数组，并使用 [0, 1) 区间随机数据填充，这些数据均匀分布。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: np.random.rand(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">Out[<span class="number">2</span>]: </span><br><span class="line">array([[ <span class="number">0.09887339</span>,  <span class="number">0.75074537</span>,  <span class="number">0.9944429</span> ],</span><br><span class="line">       [ <span class="number">0.92790081</span>,  <span class="number">0.84365033</span>,  <span class="number">0.3087985</span> ]])</span><br></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a href="../../p/7dvvr/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="../3/">&laquo; 上一页</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="extend next" rel="next" href="../5/">下一页 &raquo;</a>
+  </nav>
+</section>
+          <aside id="sidebar">
+  <div class="widget-wrap">
+    <h3 class="widget-title">关注我</h3>
+    <div class="widget widget_athemes_social_icons">
+      <div class="side-avatar-wrap">
+        <img class="side-avatar" src="/css/images/avatar.jpg">
+      </div>
+      <div class="side-author">文剑木然</div>
+    	<ul class="clearfix widget-social-icons">   
+     			  <li><a href="tencent://AddContact/?subcmd=all&amp;uin=1121672253" title="QQ"><i class="fa fa-qq" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/wechat.html" title="WeChat"><i class="fa fa-wechat" aria-hidden="true"></i></a></li> 
+            <li><a href="mailto:1121672253@qq.com" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
+     			  <li><a href="https://github.com/jlice" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/atom.xml" title="Rss"><i class="fa fa-rss" aria-hidden="true"></i></a></li> 
+   		</ul>
+    </div>
+  </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+          <li class="side-li">
+            <a href="../../p/7tbs7/">快速幂取余算法</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7ta3x/">并查集初步</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7t7af/">解决Deepin桌面下Office图标显示为压缩包</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7t3gc/">《实战Java高并发程序设计》读书笔记</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7szz3/">拼多多2020实习笔试题题解</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qvfi/">N-sum问题通解</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qhfm/">求单链表交点</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qghk/">memset的一个坑</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7q6ye/">详解Minimax算法与α-β剪枝</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7q1p8/">Linux下实用批处理脚本</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+      </div>
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

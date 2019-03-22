@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>并查集初步 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="引言有若干节点，并将其中一些节点对进行连接，要判断任意两个节点是否连通（有路径到达，而不要求直接连接），连通后就不会断开连通关系，此时就可以使用并查集。并查集擅长动态维护许多具有传递性的关系，能在无向图中维护节点之间的连通性。 要判断两个节点是否连通，可以把连通的节点加入到各自的集合里，也就是，同一个集合里的节点都是连通的，不同集合里的节点是不连通的。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并查集初步">
+<meta property="og:url" content="https://jlice.top/p/7ta3x/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="引言有若干节点，并将其中一些节点对进行连接，要判断任意两个节点是否连通（有路径到达，而不要求直接连接），连通后就不会断开连通关系，此时就可以使用并查集。并查集擅长动态维护许多具有传递性的关系，能在无向图中维护节点之间的连通性。 要判断两个节点是否连通，可以把连通的节点加入到各自的集合里，也就是，同一个集合里的节点都是连通的，不同集合里的节点是不连通的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/33a675d24ac811e98294509a4c21c90b.png">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/70eb251a4ae511e98f3b509a4c21c90b.png">
+<meta property="og:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/2e274fda4ae711e9bc82509a4c21c90b.png">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="并查集初步">
+<meta name="twitter:description" content="引言有若干节点，并将其中一些节点对进行连接，要判断任意两个节点是否连通（有路径到达，而不要求直接连接），连通后就不会断开连通关系，此时就可以使用并查集。并查集擅长动态维护许多具有传递性的关系，能在无向图中维护节点之间的连通性。 要判断两个节点是否连通，可以把连通的节点加入到各自的集合里，也就是，同一个集合里的节点都是连通的，不同集合里的节点是不连通的。">
+<meta name="twitter:image" content="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/33a675d24ac811e98294509a4c21c90b.png">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-并查集初步" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      并查集初步
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2019-03-20T03:57:31.000Z" itemprop="datePublished">2019-03-20</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2019/2019-03-20-并查集初步.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>有若干节点，并将其中一些节点对进行连接，要判断任意两个节点是否连通（有路径到达，而不要求直接连接），连通后就不会断开连通关系，此时就可以使用并查集。并查集擅长动态维护许多具有传递性的关系，能在无向图中维护节点之间的连通性。</p>
+<p>要判断两个节点是否连通，可以把连通的节点加入到各自的集合里，也就是，同一个集合里的节点都是连通的，不同集合里的节点是不连通的。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/33a675d24ac811e98294509a4c21c90b.png" alt></p>
+<a id="more"></a>
+<p>如图，节点a、b、c、d属于同一个集合，它们之间是连通的；节点x、y、z属于同一个集合，它们之间也是连通的。但是，不同集合里的节点，如b和x，是不连通的。</p>
+<p>可以发现，每个集合构成了树形的结构，同一个集合里的节点，它们的根节点是相同的。要判断两个节点是否连通，只需要判断它们的根节点是否一致即可。</p>
+<p>并查集的API定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UF</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 查找节点的根节点</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;&#125;;</span><br><span class="line">    <span class="comment">// 连接节点p和q</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;&#125;;</span><br><span class="line">    <span class="comment">// 判断两个节点是否连通</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> find(x) == find(y);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>并查集的存储结构可以使用数组或链表，一般采用数组作为实现的方式。<strong>数组记录元素的父节点</strong>。例如，A[i] = j，表示节点i的父节点是节点j。</p>
+<p>初始时，每个节点各自作为一个集合，也就是节点的父节点是自身。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UF(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            parent.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>查找节点的根节点时，如果节点的父节点是自身，那么该节点就是根节点。否则，顺着父节点不断向上找，直至根节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> parent[x] == x ? x : find(parent[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>连接两个节点时，实际上就是把两个节点的所在的集合合并成一个。首先需要找到两个节点的根节点，把其中一个根节点的父节点修改为另一个根节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    parent[find(x)] = find(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h2><p>对于 find 的过程，可以修改节点的父节点来加速下次查找，这个优化称为“路径压缩”。</p>
+<p>例如，在查找根节点的过程中，修改沿途节点的父节点为根节点：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/70eb251a4ae511e98f3b509a4c21c90b.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> parent[x] == x ? x : parent[x] = find(parent[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非递归的写法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> root = x;</span><br><span class="line">    <span class="keyword">while</span> (parent[root] != root) &#123;</span><br><span class="line">        root = parent[root];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">while</span> (x != root) &#123;</span><br><span class="line">        tmp = parent[x];</span><br><span class="line">        parent[x] = root;</span><br><span class="line">        x = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有其它的路径压缩方式。例如，在查找根节点的过程中，若节点不是根节点，就将节点的父节点修改为爷节点（父节点的父节点）：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/2e274fda4ae711e9bc82509a4c21c90b.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (parent[x] != x) &#123;</span><br><span class="line">        parent[x] = parent[parent[x]];</span><br><span class="line">        x = parent[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="合并策略"><a href="#合并策略" class="headerlink" title="合并策略"></a>合并策略</h2><p>对于 join 的过程，如果不加任何策略合并，可能会形成很长的路径，应该尽量选择深度更小的集合的根节点进行父节点的修改。</p>
+<h3 id="按秩合并"><a href="#按秩合并" class="headerlink" title="按秩合并"></a>按秩合并</h3><p>集合的秩，也就是集合所对应的树的深度。</p>
+<p>如果两个集合的秩不相等，就把秩小的集合的根节点的父节点修改为秩大的集合的根节点。如果两个集合的秩相等，那么，将其中一个集合的根节点的父节点修改为另一个集合的根节点，同时，将未修改父节点的根节点的集合的秩+1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UF</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rank;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UF(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            parent.push_back(i);</span><br><span class="line">            rank.push_back(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> xRoot = find(x);</span><br><span class="line">        <span class="keyword">int</span> yRoot = find(y);</span><br><span class="line">        <span class="keyword">if</span> (xRoot != yRoot) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rank[xRoot] &gt; rank[yRoot]) &#123;</span><br><span class="line">                parent[yRoot] = xRoot;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent[xRoot] = yRoot;</span><br><span class="line">                <span class="keyword">if</span> (rank[xRoot] == rank[yRoot]) &#123;</span><br><span class="line">                    rank[yRoot]++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>也可以在根节点存储秩的信息，思路参考下面的“按size合并”</p>
+<h3 id="按size合并"><a href="#按size合并" class="headerlink" title="按size合并"></a>按size合并</h3><p>为了记录集合的size，也就是集合包含节点的个数，可以将根节点的父节点的值修改为“-1*集合包含节点的个数”，同时，根节点的判断方式修改为父节点的值小于0。合并时，将节点数少的集合并入节点数多的集合，也就是修改节点数少的集合的根节点的父节点为节点数多的集合的根节点。注意，在修改父节点前要更新节点数多的集合的节点数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UF</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UF(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            parent.push_back(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> parent[x] &lt; <span class="number">0</span> ? x : parent[x] = find(parent[x]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> xRoot = find(x);</span><br><span class="line">        <span class="keyword">int</span> yRoot = find(y);</span><br><span class="line">        <span class="keyword">if</span> (xRoot != yRoot) &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent[xRoot] &lt; parent[yRoot]) &#123;</span><br><span class="line">                parent[xRoot] += parent[yRoot];</span><br><span class="line">                parent[yRoot] = xRoot;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent[yRoot] += parent[xRoot];</span><br><span class="line">                parent[xRoot] = yRoot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>不过，按size合并的策略并不总能选择深度更小的集合的根节点进行父节点的修改，例如本文第一个图的情况。</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7ta3x/" target="_blank" rel="noopener" title="并查集初步">https://jlice.top/p/7ta3x/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/算法/">算法</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7tbs7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          快速幂取余算法
+      </div>
+    </a>
+    <a href="../7t7af/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">解决Deepin桌面下Office图标显示为压缩包</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径压缩"><span class="nav-number">3.</span> <span class="nav-text">路径压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并策略"><span class="nav-number">4.</span> <span class="nav-text">合并策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按秩合并"><span class="nav-number">4.1.</span> <span class="nav-text">按秩合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按size合并"><span class="nav-number">4.2.</span> <span class="nav-text">按size合并</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2019-03-20T11:57:31+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

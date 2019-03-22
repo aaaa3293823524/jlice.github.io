@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>撸了个leetcode题解仓库自动生成与发布的工具 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="前言看到有不少人在GitHub展示自己的LeetCode题解。其实我自己也在GitHub记录了自己的LeetCode题解，但是，从做题到整理，需要很多时间。本来刷题就需要时间，也够累的，还要整理，再写出来，一道题得花上好久。 最近在LeetCode上刷了上百道题目，当然，不少是Easy难度的。如果让我手动去整理，我觉得太费时间了。我一直贯彻一种理念，简单不麻烦的事容易坚持。于是，我就想着，是否能用">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="撸了个LeetCode题解仓库自动生成与发布的工具">
+<meta property="og:url" content="https://jlice.top/p/7odvq/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="前言看到有不少人在GitHub展示自己的LeetCode题解。其实我自己也在GitHub记录了自己的LeetCode题解，但是，从做题到整理，需要很多时间。本来刷题就需要时间，也够累的，还要整理，再写出来，一道题得花上好久。 最近在LeetCode上刷了上百道题目，当然，不少是Easy难度的。如果让我手动去整理，我觉得太费时间了。我一直贯彻一种理念，简单不麻烦的事容易坚持。于是，我就想着，是否能用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="撸了个LeetCode题解仓库自动生成与发布的工具">
+<meta name="twitter:description" content="前言看到有不少人在GitHub展示自己的LeetCode题解。其实我自己也在GitHub记录了自己的LeetCode题解，但是，从做题到整理，需要很多时间。本来刷题就需要时间，也够累的，还要整理，再写出来，一道题得花上好久。 最近在LeetCode上刷了上百道题目，当然，不少是Easy难度的。如果让我手动去整理，我觉得太费时间了。我一直贯彻一种理念，简单不麻烦的事容易坚持。于是，我就想着，是否能用">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-撸了个LeetCode题解仓库自动生成与发布的工具" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      撸了个LeetCode题解仓库自动生成与发布的工具
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-10-12T13:26:00.000Z" itemprop="datePublished">2018-10-12</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-10-12-撸了个LeetCode题解仓库自动生成与发布的工具.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看到有不少人在GitHub展示自己的LeetCode题解。其实我自己也在GitHub记录了自己的LeetCode题解，但是，从做题到整理，需要很多时间。本来刷题就需要时间，也够累的，还要整理，再写出来，一道题得花上好久。</p>
+<p>最近在LeetCode上刷了上百道题目，当然，不少是Easy难度的。如果让我手动去整理，我觉得太费时间了。我一直贯彻一种理念，简单不麻烦的事容易坚持。于是，我就想着，是否能用程序来去做这些呢？</p>
+<p>以前在刷题的时候没注意到右侧的Notes，后来偶尔注意到了，突发灵感，这个不正好可以用来写解题思路吗？于是，我就希望有个工具能整理我刷过的题目和我的解答，还有Notes。但是，找了一圈，没发现合适的，所以，干脆就自己花了大概一天半的时间撸了一个：<a href="https://github.com/jlice/leetcode-publisher" target="_blank" rel="noopener">leetcode-publisher</a></p>
+<a id="more"></a>
+<p>说一下这个工具和别的类似的工具的不同点吧。在GitHub上看到有人做过类似的工具，但是是基于headless的浏览器做的，我觉得这种方式不够优雅。其实LeetCode的请求构造并没有很麻烦，主要是csrftoken，在cookies里有，在请求头要传<code>x-csrftoken</code>和<code>referer</code>。另外，类似的LeetCode题解仓库其实放的主要是程序源代码，这并不是我想要的。因为Markdown格式可以很方便插入代码，而且，刷题的代码并不长，放在Markdown里，和题目与笔记一起，更为合适。</p>
+<p>当然，关于这个工具更具体的信息还是到GitHub去看吧～</p>
+<blockquote>
+<p><a href="https://github.com/jlice/leetcode-publisher" target="_blank" rel="noopener">jlice/leetcode-publisher: Automatically generate and publish LeetCode solution repository（LeetCode题解仓库自动生成与发布）</a></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>简单总结下做这个小项目的过程中遇到的一些困难与解决方案。</p>
+<h3 id="csrftoken"><a href="#csrftoken" class="headerlink" title="csrftoken"></a>csrftoken</h3><p>CSRF是跨站请求伪造，因为server不能给其它domain设置cookies，所以可以在请求时带上一个随机token来验证是否跨域。LeetCode要求请求头要有<code>x-csrftoken</code>和<code>referer</code>。</p>
+<h3 id="unicode字符串"><a href="#unicode字符串" class="headerlink" title="unicode字符串"></a>unicode字符串</h3><p>在获取提交的代码时，是通过正则表达式提取网页实现的，网页里用的unicode编码。比如，换行符是<code>\u000A</code>，但是，通过正则表达式提取，会被视为字符串<code>\\u000A</code>。问题是，如何把形如<code>\\u000A</code>的字符串转换成对应unicode字符（<code>\n</code>）。一开始我是想的替换和eval，结果各种试还是不行。最终想到的方法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'\\u000A'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="string">'\\u000A'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = s.encode(<span class="string">'utf-8'</span>).decode(<span class="string">'unicode-escape'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="string">'\n'</span></span><br></pre></td></tr></table></figure>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>当然，还遇到了其它的一些问题，不过相对比较好解决。</p>
+<p>比如说，HTTP 429。HTTP 429表示一定时间内请求太多。这个容易处理，捕获HTTPError，出错时等待一段时间再试即可。</p>
+<p>另外，用<code>subprocess</code>调用Shell命令<code>cd</code>切换目录时在下一条命令并不生效，因为每条命令其实是相对独立的！要用<code>os.chdir</code>来切换工作目录！</p>
+<p>为了让这个项目更有范，写英文README也是费了心思，毕竟英语写作太差了，最后还是借助Google翻译，唔。。。</p>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7odvq/" target="_blank" rel="noopener" title="撸了个LeetCode题解仓库自动生成与发布的工具">https://jlice.top/p/7odvq/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Python/">Python</a></li></ul>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7p7cg/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          深度学习CUDA配置指南
+      </div>
+    </a>
+    <a href="../7o05h/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Python中list的remove方法的坑</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#csrftoken"><span class="nav-number">2.1.</span> <span class="nav-text">csrftoken</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unicode字符串"><span class="nav-number">2.2.</span> <span class="nav-text">unicode字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">2.3.</span> <span class="nav-text">其它</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-10-12T21:26:00+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

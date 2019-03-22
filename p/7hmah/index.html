@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>tensorflow基础入门 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="TensorFlow安装CPU版本直接pip install tf-nightly即可。 GPU版本需要安装显卡驱动、cuda、cudnn，注意版本。若手动安装cuda还要将cuda的lib64目录加入LD_LIBRARY_PATH环境变量。然后使用pip install tf-nightly-gpu安装即可。 在Python中一般使用 1import tensorflow as tf 来impo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow基础入门">
+<meta property="og:url" content="https://jlice.top/p/7hmah/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="TensorFlow安装CPU版本直接pip install tf-nightly即可。 GPU版本需要安装显卡驱动、cuda、cudnn，注意版本。若手动安装cuda还要将cuda的lib64目录加入LD_LIBRARY_PATH环境变量。然后使用pip install tf-nightly-gpu安装即可。 在Python中一般使用 1import tensorflow as tf 来impo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow基础入门">
+<meta name="twitter:description" content="TensorFlow安装CPU版本直接pip install tf-nightly即可。 GPU版本需要安装显卡驱动、cuda、cudnn，注意版本。若手动安装cuda还要将cuda的lib64目录加入LD_LIBRARY_PATH环境变量。然后使用pip install tf-nightly-gpu安装即可。 在Python中一般使用 1import tensorflow as tf 来impo">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-TensorFlow基础入门" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      TensorFlow基础入门
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2018-03-07T07:53:56.000Z" itemprop="datePublished">2018-03-07</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2018/2018-03-07-TensorFlow基础入门.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="TensorFlow安装"><a href="#TensorFlow安装" class="headerlink" title="TensorFlow安装"></a>TensorFlow安装</h2><p>CPU版本直接<code>pip install tf-nightly</code>即可。</p>
+<p>GPU版本需要安装显卡驱动、cuda、cudnn，注意版本。若手动安装cuda还要将cuda的lib64目录加入<code>LD_LIBRARY_PATH</code>环境变量。然后使用<code>pip install tf-nightly-gpu</code>安装即可。</p>
+<p>在Python中一般使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
+<p>来import tensorflow。</p>
+<a id="more"></a>
+<h2 id="Graph（计算图）"><a href="#Graph（计算图）" class="headerlink" title="Graph（计算图）"></a>Graph（计算图）</h2><p>Graph是TensorFlow的基本计算模型。TensorFlow会维护一个默认的计算图，可以通过<code>tf.get_default_graph()</code>来获取当前默认的计算图。通过<code>tf.Graph()</code>可以创建计算图。</p>
+<h2 id="Session（会话）"><a href="#Session（会话）" class="headerlink" title="Session（会话）"></a>Session（会话）</h2><p>通过Session来执行定义好的计算。使用会话一般有两种模式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一种</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(...)</span><br><span class="line">sess.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(...)</span><br></pre></td></tr></table></figure>
+<h2 id="Tensor（张量）"><a href="#Tensor（张量）" class="headerlink" title="Tensor（张量）"></a>Tensor（张量）</h2><p>Tensor主要有三个属性：name、shape、dtype。</p>
+<p>name的形式为<code>&lt;op_name&gt;:&lt;output_index&gt;</code>，op_name为节点名，output_index为该张量是计算节点输出的第几个结果（从0开始）。</p>
+<p>Tensor用于引用中间计算结果和获得计算结果。</p>
+<h3 id="constant"><a href="#constant" class="headerlink" title="constant"></a>constant</h3><p>constant就是常量，在创建时赋初值且值不再变化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = tf.constant(<span class="number">5</span>, name=<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&lt;tf.Tensor <span class="string">'a:0'</span> shape=() dtype=int32&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tf.Session().run(a)</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3><p>Variable一般用于保存和更新神经网络中的参数。可以使用<code>assign</code>为Variable赋值。</p>
+<p>Variable在使用前要使用<code>initializer</code>进行初始化，使用<code>tf.global_variables_initializer()</code>可以初始化所有变量（注意：需要在Session中run一下这个初始化操作！）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">state = tf.Variable(<span class="number">0</span>)</span><br><span class="line">one = tf.constant(<span class="number">1</span>)</span><br><span class="line">add = tf.add(state, one)</span><br><span class="line">opt = tf.assign(state, add)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        sess.run(opt)</span><br><span class="line">        print(sess.run(state))</span><br></pre></td></tr></table></figure>
+<h3 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h3><p>placeholder是占位符，用来提供输入数据。通过<code>sess.run()</code>的<code>feed_dict</code>参数为placeholder传入值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feed = tf.placeholder(tf.float32)</span><br><span class="line">print(tf.Session().run(feed, feed_dict=&#123;feed: <span class="number">3.0</span>&#125;))</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7hmah/" target="_blank" rel="noopener" title="TensorFlow基础入门">https://jlice.top/p/7hmah/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7hmgi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          使用TensorFlow进行线性回归
+      </div>
+    </a>
+    <a href="../7hldu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">OpenCV拼接全景图</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow安装"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph（计算图）"><span class="nav-number">2.</span> <span class="nav-text">Graph（计算图）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session（会话）"><span class="nav-number">3.</span> <span class="nav-text">Session（会话）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor（张量）"><span class="nav-number">4.</span> <span class="nav-text">Tensor（张量）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#constant"><span class="nav-number">4.1.</span> <span class="nav-text">constant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable"><span class="nav-number">4.2.</span> <span class="nav-text">Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#placeholder"><span class="nav-number">4.3.</span> <span class="nav-text">placeholder</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2018-03-07T15:53:56+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

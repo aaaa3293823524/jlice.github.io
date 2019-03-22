@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>木然轩 - 文剑木然的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="文剑木然的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="木然轩">
+<meta property="og:url" content="https://jlice.top/page/3/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="文剑木然的个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="木然轩">
+<meta name="twitter:description" content="文剑木然的个人博客">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body>
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main">
+    <article id="post-线性最小二乘法推导" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7ka8s/">线性最小二乘法推导</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7ka8s/" class="article-date">
+	  <time datetime="2018-06-01T16:28:45.000Z" itemprop="datePublished">2018-06-02</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="代数形式"><a href="#代数形式" class="headerlink" title="代数形式"></a>代数形式</h2><p>最小二乘法在中学时讲过。有一些散点有线性的趋势，用一个一次函数去拟合，使得差距最小化。</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/45b9170c002211e989fc509a4c21c90b.jpg" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7ka8s/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-解决Dia在Linux上的输入法问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7k91v/">解决Dia在Linux上的输入法问题</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7k91v/" class="article-date">
+	  <time datetime="2018-05-31T14:43:50.000Z" itemprop="datePublished">2018-05-31</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>Dia是一个比较小巧的画图软件，支持Windows、Mac和Linux，功能类似于Visio。个人觉得Dia还挺好用的，不过，有个比较烦的地方就是用不了中文输入法。在Linux上，输入法比较折腾。</p>
+<p>按网上的说法改<code>/usr/bin/dia</code>不行，用<code>dia-normal</code>提示没这个命令。不过，我自己发现了解决方案。</p>
+<h2 id="探索历程"><a href="#探索历程" class="headerlink" title="探索历程"></a>探索历程</h2><p>运行<code>dia --help</code>，可以看到有个<code>--classic</code>选项。尝试使用这个选项运行，Dia就能输入中文了，只是工具箱面板分离了。</p>
+<p>虽然这样算是解决了输入法问题，但是，窗口太小了，还不能记住窗口大小，所以每次都要拖一下窗口大小，用起来挺不方便、不够优雅。</p>
+        <p class="article-more-link">
+          <a href="../../p/7k91v/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-重写了图床神器，支持七牛云和腾讯云" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7k90b/">重写了图床神器，支持七牛云和腾讯云</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7k90b/" class="article-date">
+	  <time datetime="2018-05-31T13:47:43.000Z" itemprop="datePublished">2018-05-31</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用Python重写了图床神器，支持七牛云和腾讯云。用Python写起来感觉顺滑多了～贴一下效果：</p>
+<p><img src="https://raw.githubusercontent.com/jlice/lpic/master/assets/lpic.gif" alt="lpic"></p>
+        <p class="article-more-link">
+          <a href="../../p/7k90b/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-撸了个七牛云图床神器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7k6v8/">撸了个七牛云图床神器</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7k6v8/" class="article-date">
+	  <time datetime="2018-05-29T15:32:16.000Z" itemprop="datePublished">2018-05-29</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>图床神器，也就是在Markdown写作时方便上传图片到云上并获取外链。Mac上有图床神器<code>iPic</code>，貌似挺不错的，不过只支持Mac。其实，图床神器的功能并不复杂，流程大致如下：</p>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/459efc14002211e9a9a7509a4c21c90b.jpg" alt></p>
+<p>基本上用Shell脚本就能搞定。</p>
+        <p class="article-more-link">
+          <a href="../../p/7k6v8/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-使用TravisCI自动构建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7k566/">使用TravisCI自动构建</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7k566/" class="article-date">
+	  <time datetime="2018-05-28T02:54:13.000Z" itemprop="datePublished">2018-05-28</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近发现了个很好用的东西：<code>TravisCI</code>，能自动构建项目。其实，持续集成我早就有所了解，不过没怎么操作过。以前也知道<code>TravisCI</code>，但没有相关需求，所以就没怎么接触。这几天在找一个适合做笔记的静态网站程序，发现了<code>MkDocs</code>挺不错的，也看了一些静态博客程序，比如<code>纸小墨</code>。不过，感觉方便的不容易定制外观，因为考虑到<code>Hexo</code>还是用的人比较多，且我对<code>Hexo</code>已经有所了解，就懒得去折腾新的静态博客了。但是，在看<code>纸小墨</code>时有了重大发现。</p>
+        <p class="article-more-link">
+          <a href="../../p/7k566/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-Python进行doctest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7jai9/">Python进行doctest</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7jai9/" class="article-date">
+	  <time datetime="2018-04-30T12:33:17.000Z" itemprop="datePublished">2018-04-30</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="doctest简介"><a href="#doctest简介" class="headerlink" title="doctest简介"></a>doctest简介</h2><p>在doc注释部分使用形如<code>Python</code>交互式命令行的代码，可以进行<code>doctest</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add(1, 2)</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a href="../../p/7jai9/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-TensorFlow之MNIST入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hqyt/">TensorFlow之MNIST入门</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hqyt/" class="article-date">
+	  <time datetime="2018-03-11T12:53:41.000Z" itemprop="datePublished">2018-03-11</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>MNIST手写数字识别是机器学习中非常经典的问题，相当于编程语言界的“Hello World“。关于神经网络解决MNIST手写数字识别问题，可以参考这个视频：<a href="https://www.bilibili.com/video/av15532370/" target="_blank" rel="noopener">深度学习之神经网络的结构 Part 1 ver 2.0</a></p>
+<p>视频中使用的是多层神经网络，为了简化问题，这里我们使用单层的网络结构。</p>
+<p>参考之前的<a href="/p/7hnmu/" title="MNIST数据集解析">MNIST数据集解析</a>，先对MNIST数据集进行解析：</p>
+        <p class="article-more-link">
+          <a href="../../p/7hqyt/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-awk命令学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hpz5/">awk命令学习笔记</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hpz5/" class="article-date">
+	  <time datetime="2018-03-10T15:29:11.000Z" itemprop="datePublished">2018-03-10</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>awk命令基本结构：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 'BEGIN&#123; commands &#125; pattern &#123; commands &#125; END&#123; commands &#125;' file</span><br></pre></td></tr></table></figure>
+<p>【选项】</p>
+<p><code>-F</code>：输入域分隔符</p>
+<p><code>-v</code>：自定义变量</p>
+<p><code>-f</code>：调用awk脚本</p>
+<p>【执行流程】</p>
+        <p class="article-more-link">
+          <a href="../../p/7hpz5/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-MNIST数据集解析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hnmu/">MNIST数据集解析</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hnmu/" class="article-date">
+	  <time datetime="2018-03-08T12:54:58.000Z" itemprop="datePublished">2018-03-08</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>从<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">MNIST数据集官网</a>可以下载MNIST数据集。</p>
+<p>MNIST数据集以.gz格式压缩，Python可以直接读取而不需要解压缩：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gzip</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> gzip.open(<span class="string">'t10k-images-idx3-ubyte.gz'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    buf = f.read()</span><br></pre></td></tr></table></figure>
+<p>MNIST数据集使用二进制文件，而不是常规的图片文件格式。以t10k-images-idx3-ubyte为例，在官网有其结构说明：</p>
+        <p class="article-more-link">
+          <a href="../../p/7hnmu/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+    <article id="post-使用TensorFlow进行线性回归" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="../../p/7hmgi/">使用TensorFlow进行线性回归</a>
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href="../../p/7hmgi/" class="article-date">
+	  <time datetime="2018-03-07T11:30:47.000Z" itemprop="datePublished">2018-03-07</time>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+          <p>我们先随机生成一些数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">train_X = <span class="number">20</span> * np.random.rand(<span class="number">100</span>).astype(np.float32)</span><br><span class="line">train_Y = (<span class="number">30</span> * train_X + <span class="number">100</span> + <span class="number">10</span> * np.random.randn(<span class="number">100</span>)).astype(np.float32)</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1256819794.cos.ap-shanghai.myqcloud.com/449b48d8002211e9b2eb509a4c21c90b.png" alt></p>
+        <p class="article-more-link">
+          <a href="../../p/7hmgi/">阅读全文</a>
+        </p>
+    </div>
+    <footer class="article-footer">
+    </footer>
+  </div>
+</article>
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="../2/">&laquo; 上一页</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><a class="extend next" rel="next" href="../4/">下一页 &raquo;</a>
+  </nav>
+</section>
+          <aside id="sidebar">
+  <div class="widget-wrap">
+    <h3 class="widget-title">关注我</h3>
+    <div class="widget widget_athemes_social_icons">
+      <div class="side-avatar-wrap">
+        <img class="side-avatar" src="/css/images/avatar.jpg">
+      </div>
+      <div class="side-author">文剑木然</div>
+    	<ul class="clearfix widget-social-icons">   
+     			  <li><a href="tencent://AddContact/?subcmd=all&amp;uin=1121672253" title="QQ"><i class="fa fa-qq" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/wechat.html" title="WeChat"><i class="fa fa-wechat" aria-hidden="true"></i></a></li> 
+            <li><a href="mailto:1121672253@qq.com" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
+     			  <li><a href="https://github.com/jlice" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+     			  <li><a href="/atom.xml" title="Rss"><i class="fa fa-rss" aria-hidden="true"></i></a></li> 
+   		</ul>
+    </div>
+  </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+          <li class="side-li">
+            <a href="../../p/7tbs7/">快速幂取余算法</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7ta3x/">并查集初步</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7t7af/">解决Deepin桌面下Office图标显示为压缩包</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7t3gc/">《实战Java高并发程序设计》读书笔记</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7szz3/">拼多多2020实习笔试题题解</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qvfi/">N-sum问题通解</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qhfm/">求单链表交点</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7qghk/">memset的一个坑</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7q6ye/">详解Minimax算法与α-β剪枝</a>
+          </li>
+          <li class="side-li">
+            <a href="../../p/7q1p8/">Linux下实用批处理脚本</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+      </div>
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

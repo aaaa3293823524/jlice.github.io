@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>【实验楼】hbase教程——学习笔记 - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="HBase环境搭建与配置HBase解压即可使用。 【注意】伪分布模式下，HBase需要与Hadoop版本匹配，可以看HBase的lib里Hadoop的jar文件版本。 需要配置hbase-site.xml，可以使用自带的Zookeeper。 单机模式配置如下： 123456&amp;lt;configuration&amp;gt;    &amp;lt;property&amp;gt;        &amp;lt;name&amp;gt;hb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验楼】HBASE教程——学习笔记">
+<meta property="og:url" content="https://jlice.top/p/7czq8/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="HBase环境搭建与配置HBase解压即可使用。 【注意】伪分布模式下，HBase需要与Hadoop版本匹配，可以看HBase的lib里Hadoop的jar文件版本。 需要配置hbase-site.xml，可以使用自带的Zookeeper。 单机模式配置如下： 123456&amp;lt;configuration&amp;gt;    &amp;lt;property&amp;gt;        &amp;lt;name&amp;gt;hb">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【实验楼】HBASE教程——学习笔记">
+<meta name="twitter:description" content="HBase环境搭建与配置HBase解压即可使用。 【注意】伪分布模式下，HBase需要与Hadoop版本匹配，可以看HBase的lib里Hadoop的jar文件版本。 需要配置hbase-site.xml，可以使用自带的Zookeeper。 单机模式配置如下： 123456&amp;lt;configuration&amp;gt;    &amp;lt;property&amp;gt;        &amp;lt;name&amp;gt;hb">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-【实验楼】HBASE教程——学习笔记" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      【实验楼】HBASE教程——学习笔记
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2017-10-08T10:08:55.000Z" itemprop="datePublished">2017-10-08</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2017/2017-10-08-【实验楼】HBASE教程——学习笔记.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="HBase环境搭建与配置"><a href="#HBase环境搭建与配置" class="headerlink" title="HBase环境搭建与配置"></a>HBase环境搭建与配置</h2><p>HBase解压即可使用。</p>
+<p>【注意】伪分布模式下，HBase需要与Hadoop版本匹配，可以看HBase的lib里Hadoop的jar文件版本。</p>
+<p>需要配置<code>hbase-site.xml</code>，可以使用自带的Zookeeper。</p>
+<p>单机模式配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///tmp/hbase-$&#123;user.name&#125;/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>伪分布模式配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置<code>hbase-env.sh</code>，需要设置<code>JAVA_HOME</code>和<code>HBASE_MANAGES_ZK</code>。使用自带的Zookeeper时，<code>HBASE_MANAGES_ZK=true</code></p>
+<p>启动HBase：<code>start-hbase.sh</code>，停止HBase：<code>stop-hbase.sh</code></p>
+<p>注意：若是伪分布模式，需要先启动HDFS。停止时先停HBase。</p>
+<p>进入HBase Shell：<code>hbase shell</code></p>
+<h2 id="HBase基本操作"><a href="#HBase基本操作" class="headerlink" title="HBase基本操作"></a>HBase基本操作</h2><p>显示帮助：<code>help</code></p>
+<p>显示状态：<code>status</code></p>
+<p>退出HBase：<code>quit</code></p>
+<p>创建新表：<code>create &#39;表名&#39;, &#39;列族名&#39;</code></p>
+<p>列举表信息：<code>list</code>、<code>list &#39;表名&#39;</code></p>
+<p>获取表描述：<code>describe &#39;表名&#39;</code></p>
+<p>删除表：删除表之前，先<code>disable</code>表，再<code>drop</code>表</p>
+<p>检查表是否存在：<code>exists &#39;表名&#39;</code></p>
+<p>禁用表：<code>disable &#39;表名&#39;</code>，启用表：<code>enable &#39;表名&#39;</code></p>
+<p>向表中插入数据：<code>put &#39;表名&#39;, &#39;行&#39;, &#39;列族:列&#39;, &#39;值&#39;</code></p>
+<p>一次性扫描全表数据：<code>scan &#39;表名&#39;</code></p>
+<p>获取一行数据：<code>get &#39;表名&#39;, &#39;行&#39;</code></p>
+<h2 id="HBase应用程序开发"><a href="#HBase应用程序开发" class="headerlink" title="HBase应用程序开发"></a>HBase应用程序开发</h2><p><code>org.apache.hadoop.hbase</code>包下常用类：</p>
+<ul>
+<li><p>HBaseConfiguration   HBase配置</p>
+</li>
+<li><p>HColumnDescriptor   列族描述符，指定列族相关信息</p>
+</li>
+<li><p>HTableDescriptor  表名描述符，指定表相关信息</p>
+</li>
+</ul>
+<p><code>org.apache.hadoop.hbase.client</code>包下常用类：</p>
+<ul>
+<li><p>HBaseAdmin  HBase管理（判断表是否存在、创建表等）</p>
+</li>
+<li><p>HTable  表</p>
+</li>
+<li><p>Get  获取数据</p>
+</li>
+<li><p>Put 添加数据</p>
+</li>
+<li><p>Scan</p>
+</li>
+<li><p>Result</p>
+</li>
+<li><p>ResultScanner</p>
+</li>
+</ul>
+<p>创建表：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HBaseAdmin admin = <span class="keyword">new</span> HBaseAdmin(conf);</span><br><span class="line">HTableDescriptor tabDesc = <span class="keyword">new</span> HTableDescriptor(tableName);</span><br><span class="line">tabDesc.addFamily(<span class="keyword">new</span> HColumnDescriptor(columnFamily));</span><br><span class="line">admin.createTable(tabDesc);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Table tab = <span class="keyword">new</span> HTable(conf, tableName);</span><br><span class="line">Put p = <span class="keyword">new</span> Put(Bytes.toBytes(row));</span><br><span class="line">p.add(Bytes.toBytes(columnFamily), Bytes.toBytes(column), Bytes.toBytes(data));</span><br><span class="line">tab.put(p);</span><br></pre></td></tr></table></figure>
+<p>获取、扫描数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTable tab = <span class="keyword">new</span> HTable(conf, tableName);</span><br><span class="line"><span class="comment">// get</span></span><br><span class="line">Get g = <span class="keyword">new</span> Get(Bytes.toBytes(row));</span><br><span class="line">Result r= tab.get(g);</span><br><span class="line"><span class="comment">// scan</span></span><br><span class="line">Scan s = <span class="keyword">new</span> Scan();</span><br><span class="line">ResultScanner rs = tab.getScanner(s);</span><br><span class="line"><span class="keyword">for</span>(Result rst:rs)&#123;</span><br><span class="line">    ; <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除表：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(admin.tableExists(tableName))&#123;</span><br><span class="line">    admin.disableTable(tableName);</span><br><span class="line">    admin.deleteTable(tableName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7czq8/" target="_blank" rel="noopener" title="【实验楼】HBASE教程——学习笔记">https://jlice.top/p/7czq8/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7d4wx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          栈和队列——算法笔记
+      </div>
+    </a>
+    <a href="../6vof6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Python项目：扇贝网小组查卡助手</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase环境搭建与配置"><span class="nav-number">1.</span> <span class="nav-text">HBase环境搭建与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase基本操作"><span class="nav-number">2.</span> <span class="nav-text">HBase基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase应用程序开发"><span class="nav-number">3.</span> <span class="nav-text">HBase应用程序开发</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2017-10-08T18:08:55+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>

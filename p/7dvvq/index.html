@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>numpy使用教程（一） - 木然轩</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="木然轩,文剑木然,个人博客,Linux,Python,机器学习,Java">
+  <meta name="description" content="术语axis 对于二维数组，垂直为轴0，水平为轴1。许多操作可以沿着一个轴进行。 123456789&amp;gt;&amp;gt;&amp;gt; x = np.arange(12).reshape(3,4)&amp;gt;&amp;gt;&amp;gt; xarray([[ 0,  1,  2,  3],       [ 4,  5,  6,  7],       [ 8,  9, 10, 11]])&amp;gt;&amp;gt;&amp;gt; x.sum(a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy使用教程（一）">
+<meta property="og:url" content="https://jlice.top/p/7dvvq/index.html">
+<meta property="og:site_name" content="木然轩">
+<meta property="og:description" content="术语axis 对于二维数组，垂直为轴0，水平为轴1。许多操作可以沿着一个轴进行。 123456789&amp;gt;&amp;gt;&amp;gt; x = np.arange(12).reshape(3,4)&amp;gt;&amp;gt;&amp;gt; xarray([[ 0,  1,  2,  3],       [ 4,  5,  6,  7],       [ 8,  9, 10, 11]])&amp;gt;&amp;gt;&amp;gt; x.sum(a">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T12:37:10.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Numpy使用教程（一）">
+<meta name="twitter:description" content="术语axis 对于二维数组，垂直为轴0，水平为轴1。许多操作可以沿着一个轴进行。 123456789&amp;gt;&amp;gt;&amp;gt; x = np.arange(12).reshape(3,4)&amp;gt;&amp;gt;&amp;gt; xarray([[ 0,  1,  2,  3],       [ 4,  5,  6,  7],       [ 8,  9, 10, 11]])&amp;gt;&amp;gt;&amp;gt; x.sum(a">
+    <link rel="alternate" href="/atom.xml" title="木然轩" type="application/atom+xml">
+  <link rel="icon" href="/css/images/avatar.jpg">
+  <link rel="apple-touch-icon" href="/css/images/avatar.jpg">
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.loli.net/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/dialog.css">
+    <link rel="stylesheet" href="/css/header-post.css">
+</head>
+</html>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <div id="container">
+    <div id="wrap">
+        <header id="navigation-header">
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <div class="container"> 
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+                  <span class="sr-only">Toggle navigation</span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                  <span class="icon-bar"></span>		
+                </button>
+              <a class="brand" style="border-width: 0;" href="../../index.html">
+                <img src="/css/images/site-logo.png" height="70px">
+              </a>
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                  <li> <a class="main-nav-link" href="../../index.html">首页</a> </li>
+                  <li> <a class="main-nav-link" href="../../archives/">归档</a> </li>
+                  <li> <a class="main-nav-link" href="../../tags/">标签</a> </li>
+                  <li> <a class="main-nav-link" href="../../about/">关于</a> </li>
+                  <li><div id="search-form-wrap">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder>
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../../js/insight.js"></script>
+</div></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+</header>
+      <div id="content" class="outer">
+          <section id="main" style="float:none;"><article id="post-Numpy使用教程（一）" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="article-inner">
+      <header class="article-header">
+    <h1 class="thumb" itemprop="name">
+      Numpy使用教程（一）
+    </h1>
+      </header>
+    <div class="article-meta">
+	<a href class="article-date">
+	  <time datetime="2017-11-06T08:38:00.000Z" itemprop="datePublished">2017-11-06</time>
+	</a>
+	<span class="article-author" href="/">
+	<span id="author">文剑木然</span>
+	</span>
+	<a class="article-edit" target="_blank" rel="noopener" href="https://github.com/jlice/blog/edit/master/source/_posts/2017/2017-11-06-Numpy使用教程（一）.md">
+	<span id="edit">编辑</span>
+	</a>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><p><strong>axis</strong></p>
+<p>对于二维数组，垂直为轴0，水平为轴1。许多操作可以沿着一个轴进行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</span><br><span class="line">       [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</span><br><span class="line">       [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x.sum(axis=<span class="number">0</span>)</span><br><span class="line">array([<span class="number">12</span>, <span class="number">15</span>, <span class="number">18</span>, <span class="number">21</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x.sum(axis=<span class="number">1</span>)</span><br><span class="line">array([ <span class="number">6</span>, <span class="number">22</span>, <span class="number">38</span>])</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong>broadcast</strong></p>
+<p>Numpy可以对形状不匹配的数组执行操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.array([<span class="number">2</span>,<span class="number">3</span>])+<span class="number">1</span></span><br><span class="line">array([<span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.array([[<span class="number">2</span>,<span class="number">3</span>]])+<span class="number">1</span></span><br><span class="line">array([[<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.array([[<span class="number">2</span>,<span class="number">3</span>]])+np.array([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">array([[<span class="number">3</span>, <span class="number">5</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.array([[<span class="number">2</span>],[<span class="number">3</span>]])+np.array([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">array([[<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+<p>这个机制在便捷的同时可能会出现意料之外的结果，因此shape不确定时建议先<code>reshape</code>。</p>
+<p><strong>mask</strong></p>
+<p>布尔数组，用于选取元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.arange(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mask = (x &gt; <span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mask</span><br><span class="line">array([<span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">True</span>,  <span class="literal">True</span>], dtype=bool)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x[mask] = <span class="number">-1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line">array([ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">-1</span>, <span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h2><p>numpy 支持丰富的数值类型。</p>
+<p>在数组里可以使用<code>dtype=</code>参数来指定数值类型。</p>
+<p>使用<code>.astype()</code>方法进行数值类型转换，使用<code>.dtype</code>查看dtype属性。</p>
+<h2 id="多维数组的创建"><a href="#多维数组的创建" class="headerlink" title="多维数组的创建"></a>多维数组的创建</h2><p>【参数说明】</p>
+<p><code>order</code>：{‘C’，’F’}，以行(C)或列(F)为主顺序。</p>
+<p>创建<code>ndarray</code>的方法：</p>
+<p><strong>从列表、元组等转换</strong></p>
+<p>使用<code>np.array</code>将列表或元组转换为ndarray数组</p>
+<p><strong>使用np原生方法创建</strong></p>
+<ul>
+<li><code>arange</code>在指定区间内创建一系列均匀间隔的值</li>
+<li><code>linspace</code>在指定区间内返回间隔均匀的值</li>
+<li><code>ones</code>用于快速创建数值全部为1的多维数组</li>
+<li><code>zeros</code>用于快速创建数值全部为0的多维数组</li>
+<li><code>eye</code>用于创建一个二维数组，其特点是k对角线上的值为1，其余值全为0</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numpy.arange(start, stop, step, dtype=<span class="literal">None</span>)</span><br><span class="line">numpy.linspace(start, stop, num=<span class="number">50</span>, endpoint=<span class="literal">True</span>, retstep=<span class="literal">False</span>, dtype=<span class="literal">None</span>)</span><br><span class="line">numpy.ones(shape, dtype=<span class="literal">None</span>, order=<span class="string">'C'</span>)</span><br><span class="line">numpy.zeros(shape, dtype=<span class="literal">None</span>, order=<span class="string">'C'</span>)</span><br><span class="line">numpy.eye(N, M=<span class="literal">None</span>, k=<span class="number">0</span>, dtype=&lt;type <span class="string">'float'</span>&gt;)</span><br></pre></td></tr></table></figure>
+<p><strong>从已知数据创建</strong></p>
+<p><code>fromfile</code>:从文本或二进制文件中构建多维数组</p>
+<p><code>frombuffer</code>, <code>fromfunction</code>, <code>fromiter</code>, <code>fromstring</code>等</p>
+<h2 id="多维数组的属性"><a href="#多维数组的属性" class="headerlink" title="多维数组的属性"></a>多维数组的属性</h2><p><code>T</code>：数组的转置，同<code>.transpose()</code></p>
+<p><code>dtype</code>：包含元素的数据类型</p>
+<p><code>imag</code>: 元素的虚部</p>
+<p><code>rear</code>: 元素的实部</p>
+<p><code>size</code>: 元素数</p>
+<p><code>itemsize</code>: 一个数组元素的字节数</p>
+<p><code>nbytes</code>: 元素总字节数</p>
+<p><code>ndim</code>: 数组的尺寸</p>
+<p><code>shape</code>: <strong>数组维数组</strong></p>
+<h2 id="数组的基本操作"><a href="#数组的基本操作" class="headerlink" title="数组的基本操作"></a>数组的基本操作</h2><p><strong>reshape</strong></p>
+<p><code>numpy.reshape()</code> 等效于 <code>ndarray.reshape()</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.reshape(a, newshape)</span><br></pre></td></tr></table></figure>
+<p>重设形状, <code>newshape</code>为整数或元组。</p>
+<p><strong>ravel</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.ravel(a, order=<span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
+<p>将数组扁平化，变为一维数组。</p>
+<p><strong>moveaxis</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.moveaxis(a, source, destination)</span><br></pre></td></tr></table></figure>
+<p>轴移动，可以将数组的轴移动到新的位置。</p>
+<p><strong>swapaxes</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.swapaxes(a, axis1, axis2)</span><br></pre></td></tr></table></figure>
+<p>轴交换与轴移动的效果可以通过查看操作前后的shape变化来理解。</p>
+<p><strong>transpose</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.transpose(a, axis=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>类似于矩阵的转置。<code>axis</code>有值时替换轴。</p>
+<p><strong>atleast_xd</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numpy.atleast_1d()</span><br><span class="line">numpy.atleast_2d()</span><br><span class="line">numpy.atleast_3d()</span><br></pre></td></tr></table></figure>
+<p>维度改变，支持将输入数据直接视为<code>x</code>维。</p>
+<p><strong>类型转换</strong></p>
+<ul>
+<li><code>asarray(a，dtype，order)</code>：将特定输入转换为数组。</li>
+<li><code>asanyarray(a，dtype，order)</code>：将特定输入转换为 <code>ndarray</code>。</li>
+<li><code>asmatrix(data，dtype)</code>：将特定输入转换为矩阵。</li>
+<li><code>asfarray(a，dtype)</code>：将特定输入转换为 <code>float</code>类型的数组。</li>
+<li><code>asarray_chkfinite(a，dtype，order)</code>：将特定输入转换为数组，检查 <code>NaN</code> 或 <code>infs</code>。</li>
+<li><code>asscalar(a)</code>：将大小为 1 的数组转换为标量。</li>
+</ul>
+<p><strong>concatenate</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.concatenate((a1, a2, ...), axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>数组连接。<code>axis</code>：指定连接轴。</p>
+<p><strong>堆叠</strong></p>
+<ul>
+<li><code>stack(arrays，axis)</code>：沿着新轴连接数组的序列。</li>
+<li><code>column_stack()</code>：将 1 维数组作为列堆叠到 2 维数组中。</li>
+<li><code>hstack()</code>：按水平方向堆叠数组。</li>
+<li><code>vstack()</code>：按垂直方向堆叠数组。</li>
+<li><code>dstack()</code>：按深度方向堆叠数组。</li>
+</ul>
+<p><strong>拆分</strong></p>
+<ul>
+<li><code>split(ary，indices_or_sections，axis)</code>：将数组拆分为多个子数组。</li>
+<li><code>dsplit(ary，indices_or_sections)</code>：按深度方向将数组拆分成多个子数组。</li>
+<li><code>hsplit(ary，indices_or_sections)</code>：按水平方向将数组拆分成多个子数组。</li>
+<li><code>vsplit(ary，indices_or_sections)</code>：按垂直方向将数组拆分成多个子数组。</li>
+</ul>
+<p><strong>delete</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.delete(arr，obj，axis)</span><br></pre></td></tr></table></figure>
+<p>沿特定轴删除数组中的子数组。</p>
+<p><strong>insert</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.insert(arr，obj，values，axis)</span><br></pre></td></tr></table></figure>
+<p>依据索引在特定轴之前插入值。</p>
+<p><strong>append</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.append(arr，values，axis)</span><br></pre></td></tr></table></figure>
+<p>将值附加到数组的末尾，并返回 1 维数组。</p>
+<p><strong>resize</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.resize(a，new_shape)</span><br></pre></td></tr></table></figure>
+<p>对数组尺寸进行重新设定。</p>
+<p>【resize和reshape的区别】</p>
+<p><code>reshape</code> 在改变形状时，不会影响原数组，相当于对原数组做了一份拷贝。而 <code>resize</code> 则是对原数组执行操作。</p>
+<p><strong>翻转数组</strong></p>
+<ul>
+<li><code>fliplr(m)</code>：左右翻转数组。</li>
+<li><code>flipud(m)</code>：上下翻转数组。</li>
+</ul>
+    </div>
+    <footer class="article-footer">
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>文剑木然
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/p/7dvvq/" target="_blank" rel="noopener" title="Numpy使用教程（一）">https://jlice.top/p/7dvvq/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处！
+          </li>
+        </ul>
+<div>
+</div></div>
+    </footer>
+  </div>
+<nav id="article-nav">
+    <a href="../7dvvr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          Numpy使用教程（二）
+      </div>
+    </a>
+    <a href="../7dmd9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Scala语言初步</div>
+    </a>
+</nav>
+</article>
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值类型"><span class="nav-number">2.</span> <span class="nav-text">数值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多维数组的创建"><span class="nav-number">3.</span> <span class="nav-text">多维数组的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多维数组的属性"><span class="nav-number">4.</span> <span class="nav-text">多维数组的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的基本操作"><span class="nav-number">5.</span> <span class="nav-text">数组的基本操作</span></a></li></ol>
+    </div>
+  </aside>
+<script type="text/javascript">
+var offset_years = ((new Date()) - (new Date("2017-11-06T16:38:00+08:00"))) / (1000 * 3600 * 24 * 365);
+if (offset_years > 3) {$(".article-entry").before('<div class="outdated-warn">本文写于' + offset_years.toFixed(1) + '年前，鉴于技术发展迅速，可能已不适用。</div>');}
+</script>
+</section>
+      </div>
+      <footer id="footer">
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2015 - 2019 木然轩 All Rights Reserved.</p>
+  		   	<p id="copyRightCn">文剑木然 保留所有权利</p>
+		</div>
+  </div>
+</footer>
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../js/scripts.js"></script>
+  <script src="../../js/home.js"></script>
+  <script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c7fb717ef5f3ae5fea89edf439acd013";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </div>
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+</body>
+</html>
